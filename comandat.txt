@@ -6,3 +6,6 @@ npx nx g @schematics/angular:component --name=banner --export --prefix=ui --sele
 
 create library
 npx nx g @nrwl/workspace:lib users
+
+component
+$ npx nx g @schematics/angular:component --name=shell --selector=banner --project=admin --style=sass --no-interactive --dry-run
