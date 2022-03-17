@@ -12,6 +12,14 @@ import { AdminDashboardComponent } from './pages/admin-dashboard/admin-dashboard
 import { CategoriesListComponent } from './categories/categories-list/categories-list.component';
 
 import {CardModule} from 'primeng/card';
+import {ToolbarModule} from 'primeng/toolbar';
+import {ButtonModule} from 'primeng/button';
+
+const UX_MODULE = [
+  CardModule,
+  ToolbarModule,
+  ButtonModule
+];
 
 const routes: Routes = [
   {
@@ -41,7 +49,7 @@ const routes: Routes = [
   imports: [
     BrowserModule,
     RouterModule.forRoot(routes, { initialNavigation: 'enabledBlocking' }),
-    CardModule
+    ...UX_MODULE
   ],
   providers: [],
   bootstrap: [AppComponent],

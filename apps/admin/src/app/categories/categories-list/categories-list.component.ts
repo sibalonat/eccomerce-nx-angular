@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'mnplus-categories-list',
+  selector: 'admin-categories-list',
   templateUrl: './categories-list.component.html',
   styles: [
   ]
