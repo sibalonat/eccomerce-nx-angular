@@ -7,6 +7,7 @@
     "artizanave-e2e": "apps/artizanave-e2e",
     "orders": "libs/orders",
     "products": "libs/products",
-    "ui": "libs/ui"
+    "ui": "libs/ui",
+    "users": "libs/users"
   }
 }

@@ -1,0 +1,8 @@
+brenda librarive
+npx nx g @schematics/angular:component --name=banner  --project=ui --prefix=ui
+
+npx nx g @schematics/angular:component --name=banner --export --prefix=ui --selector=banner --project=ui
+
+
+create library
+npx nx g @nrwl/workspace:lib users

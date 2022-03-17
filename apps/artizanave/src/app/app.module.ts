@@ -1,3 +1,4 @@
+import { UiModule } from './../../../../libs/ui/src/lib/ui.module';
 import { RouterModule, Routes } from '@angular/router';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
@@ -17,7 +18,7 @@ const routes: Routes = [
 
 @NgModule({
   declarations: [AppComponent, NxWelcomeComponent, HomePageComponent, ProductListComponent, HeaderComponent, FooterComponent],
-  imports: [BrowserModule, RouterModule.forRoot(routes)],
+  imports: [BrowserModule, RouterModule.forRoot(routes), UiModule],
   providers: [],
   bootstrap: [AppComponent],
 })
