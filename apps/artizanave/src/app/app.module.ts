@@ -1,3 +1,4 @@
+// import { UiModule } from './../../../../libs/ui/src/lib/ui.module';
 import { UiModule } from '@mnplus/ui';
 import { RouterModule, Routes } from '@angular/router';
 import { NgModule } from '@angular/core';
