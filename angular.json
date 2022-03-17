@@ -1,0 +1,7 @@
+{
+  "version": 2,
+  "projects": {
+    "artizanave": "apps/artizanave",
+    "artizanave-e2e": "apps/artizanave-e2e"
+  }
+}
