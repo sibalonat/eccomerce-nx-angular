@@ -4,12 +4,34 @@
       <div class="p-col-12">
         <p-toolbar>
           <div class="p-toolbar-group-left">
-            <p-button
-            styleClass="p-button-success"
-            label="New"
-            icon="pi pi-plus"></p-button>
+            <p-button styleClass="p-button-success" label="New" icon="pi pi-plus"></p-button>
           </div>
         </p-toolbar>
+      </div>
+      <div class="p-grid">
+        <p-table [value]="categories" responsiveLayout="scroll">
+          <ng-template pTemplate="header">
+            <tr>
+              <th>Code</th>
+              <th>Name</th>
+              <th>Category</th>
+              <th>Quantity</th>
+            </tr>
+          </ng-template>
+          <!-- <ng-template pTemplate="body" let-product> -->
+          <ng-template pTemplate="body" let-category>
+            <tr>
+              <!-- <td>{{product.code}}</td> -->
+              <td>product.code</td>
+              <!-- <td>{{product.name}}</td> -->
+              <td>product.name</td>
+              <!-- <td>{{product.category}}</td> -->
+              <td>product.category</td>
+              <!-- <td>{{product.quantity}}</td> -->
+              <td>product.quantity</td>
+            </tr>
+          </ng-template>
+        </p-table>
       </div>
     </div>
   </p-card>

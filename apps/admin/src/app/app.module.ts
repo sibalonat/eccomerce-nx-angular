@@ -14,11 +14,13 @@ import { CategoriesListComponent } from './categories/categories-list/categories
 import {CardModule} from 'primeng/card';
 import {ToolbarModule} from 'primeng/toolbar';
 import {ButtonModule} from 'primeng/button';
+import {TableModule} from 'primeng/table';
 
 const UX_MODULE = [
   CardModule,
   ToolbarModule,
-  ButtonModule
+  ButtonModule,
+  TableModule
 ];
 
 const routes: Routes = [
