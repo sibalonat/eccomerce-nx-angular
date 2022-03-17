@@ -9,24 +9,24 @@
         </p-toolbar>
       </div>
       <div class="p-grid">
-        <p-table [value]="categories" responsiveLayout="scroll">
+        <p-table [value]="categories" responsiveLayout="scroll" styleClass="p-datatable-gridlines">
           <ng-template pTemplate="header">
             <tr>
-              <th>Code</th>
+              <th>id</th>
               <th>Name</th>
-              <th>Category</th>
+              <th>icon</th>
               <th>Quantity</th>
             </tr>
           </ng-template>
           <!-- <ng-template pTemplate="body" let-product> -->
           <ng-template pTemplate="body" let-category>
             <tr>
-              <!-- <td>{{product.code}}</td> -->
-              <td>product.code</td>
-              <!-- <td>{{product.name}}</td> -->
-              <td>product.name</td>
-              <!-- <td>{{product.category}}</td> -->
-              <td>product.category</td>
+              <td>{{category.id}}</td>
+              <!-- <td>product.code</td> -->
+              <td>{{category.name}}</td>
+              <!-- <td>product.name</td> -->
+              <td>{{category.icon}}</td>
+              <!-- <td>product.category</td> -->
               <!-- <td>{{product.quantity}}</td> -->
               <td>product.quantity</td>
             </tr>
