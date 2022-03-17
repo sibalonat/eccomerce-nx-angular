@@ -1,8 +1,12 @@
+//normalize
+@import '~normalize.css/normalize.css';
+
 @import './base/colors.scss';
 @import './base/fonts.scss';
 @import './base/mixins.scss';
 
-
+//shell
+@import './apps/admin/shell.scss';
 
 //primeng
 @import '~primeicons/primeicons.css';
