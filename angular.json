@@ -4,6 +4,9 @@
     "admin": "apps/admin",
     "admin-e2e": "apps/admin-e2e",
     "artizanave": "apps/artizanave",
-    "artizanave-e2e": "apps/artizanave-e2e"
+    "artizanave-e2e": "apps/artizanave-e2e",
+    "orders": "libs/orders",
+    "products": "libs/products",
+    "ui": "libs/ui"
   }
 }

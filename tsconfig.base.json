@@ -14,7 +14,11 @@
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
-    "paths": {}
+    "paths": {
+      "@mnplus/orders": ["libs/orders/src/index.ts"],
+      "@mnplus/products": ["libs/products/src/index.ts"],
+      "@mnplus/ui": ["libs/ui/src/index.ts"]
+    }
   },
   "exclude": ["node_modules", "tmp"]
 }
