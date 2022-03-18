@@ -7,6 +7,7 @@ import { Category } from '@mnplus/products';
 import { MessageService } from 'primeng/api';
 // import { error } from 'console';
 import { timer } from 'rxjs';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'admin-categories-form',
@@ -16,15 +17,18 @@ import { timer } from 'rxjs';
 })
 export class CategoriesFormComponent implements OnInit {
   // form!: FormGroup;
-  form: FormGroup;
-
+  form!: FormGroup;
   isSubmitted = false;
+  editMode = false;
+
+  currentCategoryId!: string;
 
   constructor(
     private msgService: MessageService,
     private formBuilder: FormBuilder,
     private catService: CategoriesService,
-    private location: Location
+    private location: Location,
+    private router: ActivatedRoute
     ) { }
 
 
@@ -34,6 +38,8 @@ export class CategoriesFormComponent implements OnInit {
       name: ['', Validators.required],
       icon: ['', Validators.required]
     });
+
+    this._checkEditMode();
   }
 
   onSubmit()
@@ -43,8 +49,14 @@ export class CategoriesFormComponent implements OnInit {
       return;
     }
     const category: Category = {
-      name: this.categoryForm.name.value,
-      icon: this.categoryForm.icon.value
+      id: this.currentCategoryId,
+      name: this.categoryForm['name'].value,
+      icon: this.categoryForm['icon'].value
+    }
+    if (this.editMode) {
+      this._updateCategory(category);
+    } else {
+      this._addCategory(category);
     }
     // const category: Category = {
     //   id: this.currentCategoryId,
@@ -52,6 +64,11 @@ export class CategoriesFormComponent implements OnInit {
     //   icon: this.categoryForm.icon.value,
     //   color: this.categoryForm.color.value
     // };
+
+  }
+
+  private _addCategory(category: Category)
+  {
     this.catService.createCategory(category).subscribe(
       (response) => {
         this.msgService.add({
@@ -71,6 +88,43 @@ export class CategoriesFormComponent implements OnInit {
         });
       }
     );
+  }
+  private _updateCategory(category: Category)
+  {
+    this.catService.updateCategory(category).subscribe(
+      (response) => {
+        this.msgService.add({
+          severity: 'success',
+          summary: 'Success',
+          detail: 'Category is created'
+        });
+        timer(2000).toPromise().then(done => {
+          this.location.back();
+        })
+      },
+      (error) => {
+        this.msgService.add({
+          severity: 'error',
+          summary: 'Error',
+          detail: 'Category is not created'
+        });
+      }
+    );
+  }
+
+  private _checkEditMode()
+  {
+    this.router.params.subscribe(params => {
+      if (params['id']) {
+        this.editMode = true;
+        this.currentCategoryId = params['id'];
+
+        this.catService.getCategory(params['id']).subscribe(category => {
+          this.categoryForm['name'].setValue(category.name);
+          this.categoryForm['icon'].setValue(category.icon);
+        });
+      }
+    })
   }
 
   get categoryForm() {

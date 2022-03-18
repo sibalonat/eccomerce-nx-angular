@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { Category } from '@mnplus/products';
 import { CategoriesService } from '@mnplus/products';
 import { Component, OnInit } from '@angular/core';
@@ -16,7 +17,8 @@ export class CategoriesListComponent implements OnInit {
   constructor(
     private msgService: MessageService,
     private confirmationService: ConfirmationService,
-    private categoryService: CategoriesService
+    private categoryService: CategoriesService,
+    private router: Router
     ) { }
 
   ngOnInit(): void {
@@ -44,6 +46,11 @@ export class CategoriesListComponent implements OnInit {
         });
       }
     });
+  }
+
+  updateCategory(categoryId: string) {
+    // this.categoryService.
+    this.router.navigateByUrl(`categories/form/${categoryId}`);
   }
 
   private _getCategories()
