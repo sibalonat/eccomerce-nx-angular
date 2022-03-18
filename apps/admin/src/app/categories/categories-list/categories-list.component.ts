@@ -37,7 +37,7 @@ export class CategoriesListComponent implements OnInit {
             detail: 'Category is created'
           });
         },
-        (error) => {
+        () => {
           this.msgService.add({
             severity: 'error',
             summary: 'Error',
