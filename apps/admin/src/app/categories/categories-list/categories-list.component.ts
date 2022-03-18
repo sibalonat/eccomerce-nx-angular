@@ -1,3 +1,5 @@
+import { Category } from '@mnplus/products';
+import { CategoriesService } from '@mnplus/products';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -8,27 +10,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CategoriesListComponent implements OnInit {
 
-  categories = [
-    {
-      id: 1,
-      name: "category-1",
-      icon: "icon-1"
-    },
-    {
-      id: 2,
-      name: "category-2",
-      icon: "icon-1"
-    },
-    {
-      id: 3,
-      name: "category-3",
-      icon: "icon-1"
-    }
-  ]
+  categories: Category[] = [];
 
-  constructor() { }
+  constructor(private categoryService: CategoriesService) { }
 
   ngOnInit(): void {
+    this.categoryService.getCategories().subscribe(cats => {
+      this.categories = cats;
+    });
   }
 
 }

@@ -1,3 +1,4 @@
+import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
@@ -15,6 +16,7 @@ import {CardModule} from 'primeng/card';
 import {ToolbarModule} from 'primeng/toolbar';
 import {ButtonModule} from 'primeng/button';
 import {TableModule} from 'primeng/table';
+import { CategoriesFormComponent } from './categories/categories-form/categories-form.component';
 
 const UX_MODULE = [
   CardModule,
@@ -36,6 +38,10 @@ const routes: Routes = [
         path: 'categories',
         component: CategoriesListComponent
       },
+      {
+        path: 'categories/form',
+        component: CategoriesFormComponent
+      },
     ]
   }
 ]
@@ -47,9 +53,11 @@ const routes: Routes = [
     AdminDashboardComponent,
     ShellComponent,
     SidebarComponent,
-    CategoriesListComponent],
+    CategoriesListComponent,
+    CategoriesFormComponent],
   imports: [
     BrowserModule,
+    HttpClientModule,
     RouterModule.forRoot(routes, { initialNavigation: 'enabledBlocking' }),
     ...UX_MODULE
   ],
