@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup } from '@angular/forms';import { ProductsService } from '@mnplus/products';
+
+import { Router } from '@angular/router';
+import { ProductsService } from '@mnplus/products';
 
 @Component({
   selector: 'admin-products-list',
@@ -11,12 +13,17 @@ export class ProductsListComponent implements OnInit {
 
   products = [] as any;
 
-
-
-  constructor( private productServ: ProductsService ) { }
+  constructor(
+    private productServ: ProductsService,
+    private router: Router ) { }
 
   ngOnInit(): void {
     this._getProducts();
+  }
+
+  updateProduct(productId: string)
+  {
+    this.router.navigateByUrl(`products/form/${productId}`);
   }
 
   private _getProducts()

@@ -1,3 +1,4 @@
+import { ActivatedRoute } from '@angular/router';
 
 import { Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
@@ -20,17 +21,21 @@ export class ProductsFormComponent implements OnInit {
   editMode = false;
   categories = [] as any;
   imageDisplay!: string | ArrayBuffer | null;
+  currentProductId!: string;
+
 
   constructor(
     private formBuilder: FormBuilder,
     private prdSrv: ProductsService,
     private msgService: MessageService,
     private catServ: CategoriesService,
-    private location: Location ) { }
+    private location: Location,
+    private route: ActivatedRoute ) { }
 
   ngOnInit(): void {
     this._initForm();
     this._getCategories();
+    this._checkEditMode();
   }
 
   private _initForm()
@@ -106,6 +111,28 @@ export class ProductsFormComponent implements OnInit {
         })
       }
     )
+  }
+
+
+  private _checkEditMode()
+  {
+    this.route.params.subscribe((params) => {
+      if (params['id']) {
+        this.editMode = true;
+        this.currentProductId = params['id'];
+
+        this.prdSrv.getProduct(params['id']).subscribe(product => {
+          this.productForm['name'].setValue(product.name);
+          this.productForm['category'].setValue(product.category);
+          this.productForm['brand'].setValue(product.brand);
+          this.productForm['price'].setValue(product.price);
+          this.productForm['countInStock'].setValue(product.countInStock);
+          this.productForm['isFeatured'].setValue(product.isFeatured);
+          this.productForm['description'].setValue(product.description);
+          this.productForm['richDescription'].setValue(product.richDescription);
+        });
+      }
+    })
   }
 
   private _getCategories()

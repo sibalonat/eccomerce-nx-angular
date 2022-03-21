@@ -22,10 +22,10 @@ export class ProductsService {
   {
     return this.http.get<Product[]>(this.apiURLProducts);
   }
-  // getCategory(categoryId: string) : Observable<Category>
-  // {
-  //   return this.http.get<Category>(`${this.apiURLCategories}${categoryId}`);
-  // }
+  getProduct(productId: string) : Observable<Product>
+  {
+    return this.http.get<Product>(`${this.apiURLProducts}/${productId}`);
+  }
 
   createProduct(productData: FormData): Observable<Product>
   {
