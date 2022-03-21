@@ -7,7 +7,6 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 
-// Http
 
 @Injectable({
   providedIn: 'root'
@@ -40,6 +39,5 @@ export class CategoriesService {
   updateCategory(category: Category): Observable<Category>
   {
     return this.http.put<Category>(`${this.apiURLCategories}/${category.id}`, category);
-    // return this.http.put<Category>(`http://localhost:3000/api/v1/categories/${category.id}`);
   }
 }

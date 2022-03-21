@@ -16,15 +16,21 @@ import { AdminDashboardComponent } from './pages/admin-dashboard/admin-dashboard
 import { CategoriesListComponent } from './categories/categories-list/categories-list.component';
 import { CategoriesFormComponent } from './categories/categories-form/categories-form.component';
 
-import {CardModule} from 'primeng/card';
-import {ToolbarModule} from 'primeng/toolbar';
-import {ButtonModule} from 'primeng/button';
-import {TableModule} from 'primeng/table';
-import {InputTextModule} from 'primeng/inputtext';
-import {ToastModule} from 'primeng/toast';
+import { CardModule } from 'primeng/card';
+import { ToolbarModule } from 'primeng/toolbar';
+import { ButtonModule } from 'primeng/button';
+import { TableModule } from 'primeng/table';
+import { InputTextModule } from 'primeng/inputtext';
+import { ToastModule } from 'primeng/toast';
 import { ConfirmationService, MessageService } from 'primeng/api';
-import {ConfirmDialogModule} from 'primeng/confirmdialog';
-import {ColorPickerModule} from 'primeng/colorpicker';
+import { ConfirmDialogModule } from 'primeng/confirmdialog';
+import { ColorPickerModule } from 'primeng/colorpicker';
+import { ProductsListComponent } from './pages/products/products-list/products-list.component';
+import { ProductsFormComponent } from './pages/products/products-form/products-form.component';
+import { InputNumberModule } from 'primeng/inputnumber';
+import { InputTextareaModule } from 'primeng/inputtextarea';
+import { InputSwitchModule } from 'primeng/inputswitch';
+
 
 const UX_MODULE = [
   CardModule,
@@ -34,7 +40,10 @@ const UX_MODULE = [
   InputTextModule,
   ToastModule,
   ConfirmDialogModule,
-  ColorPickerModule
+  ColorPickerModule,
+  InputNumberModule,
+  InputTextareaModule,
+  InputSwitchModule
 ];
 
 const routes: Routes = [
@@ -49,6 +58,18 @@ const routes: Routes = [
       {
         path: 'categories',
         component: CategoriesListComponent
+      },
+      {
+        path: 'products',
+        component: ProductsListComponent
+      },
+      {
+        path: 'products/form',
+        component: ProductsFormComponent
+      },
+      {
+        path: 'products/form/:id',
+        component: ProductsFormComponent
       },
       {
         path: 'categories/form',
@@ -70,7 +91,9 @@ const routes: Routes = [
     ShellComponent,
     SidebarComponent,
     CategoriesListComponent,
-    CategoriesFormComponent],
+    CategoriesFormComponent,
+    ProductsListComponent,
+    ProductsFormComponent],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,

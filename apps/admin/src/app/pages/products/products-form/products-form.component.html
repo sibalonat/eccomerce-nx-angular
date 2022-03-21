@@ -1,0 +1,132 @@
+<p-toast></p-toast>
+<div class="admin-page">
+  <p-card [header]="editMode ? 'Edit Category' : 'Add Category'" subheader="Create or Edit Category">
+    <div class="grid">
+      <div class="col-12">
+        <p-toolbar>
+          <div class="p-toolbar-group-left"></div>
+          <div class="p-toolbar-group-right">
+            <!-- <p-button
+            styleClass="p-button-primary mr-2"
+            [label]="editMode ? 'Update' : 'Create'"
+            icon="pi pi-plus"
+            (click)="onSubmit()"></p-button> -->
+            <p-button
+            styleClass="p-button-secondary"
+            label="Cancel"
+            icon="pi pi-arrow-circle-left"></p-button>
+          </div>
+        </p-toolbar>
+      </div>
+      <div class="grid mt-4 w-full">
+        <div class="col-12">
+          <form [formGroup]="form">
+            <div class="card">
+              <div class="formgrid grid">
+                  <div class="field col">
+                      <label for="name">Product Name</label>
+                      <input
+                      formControlName="name"
+                      id="name"
+                      type="text"
+                      class="inputfield w-full"
+                      pInputText />
+                      <small
+                      *ngIf="productForm['name'].invalid && isSubmitted"
+                      class="p-error"
+                      >Name is required</small>
+                  </div>
+                  <div class="field col">
+                      <label for="brand">Shpia e</label>
+                      <input
+                      formControlName="brand"
+                      id="brand"
+                      type="text"
+                      class="inputfield w-full"
+                      pInputText />
+                      <small
+                      *ngIf="productForm['brand'].invalid && isSubmitted"
+                      class="p-error"
+                      >Fusha duhet me u plotesu</small>
+                  </div>
+                  <div class="field col">
+                      <label for="price">Cmimi</label>
+                      <p-inputNumber
+                      formControlName="price"
+                      class="inputfield w-full"
+                      mode="decimal"
+                      inputId="price"
+                      [useGrouping]="false"></p-inputNumber>
+                      <small
+                      *ngIf="productForm['price'].invalid && isSubmitted"
+                      class="p-error"
+                      >Name is required</small>
+                  </div>
+              </div>
+              <div class="formgrid grid">
+                <div class="field col">
+                  <label for="price">Sa ka gjithsej</label>
+                  <p-inputNumber
+                  formControlName="countInStock"
+                  class="inputfield w-full"
+                  mode="decimal"
+                  inputId="countInStock"
+                  [useGrouping]="false"></p-inputNumber>
+                  <small
+                  *ngIf="productForm['countInStock'].invalid && isSubmitted"
+                  class="p-error"
+                  >Name is required</small>
+                </div>
+                  <div class="field col">
+                      <label for="price">Category Name</label>
+                      <p-inputNumber
+                      formControlName="price"
+                      type="text"
+                      class="inputfield w-full"
+                      mode="decimal"
+                      inputId="price"
+                      [useGrouping]="false"></p-inputNumber>
+                      <small
+                      *ngIf="productForm['price'].invalid && isSubmitted"
+                      class="p-error"
+                      >Name is required</small>
+                  </div>
+              </div>
+              <div class="formgrid grid">
+                  <div class="field col">
+                      <label for="description">Pershkrimi </label>
+                      <textarea
+                      formControlName="description"
+                      id="description"
+                      type="text"
+                      class="inputfield w-full"
+                      [rows]="5" [cols]="30"
+                      pInputTextarea></textarea>
+                      <small
+                      *ngIf="productForm['brand'].invalid && isSubmitted"
+                      class="p-error"
+                      >Fusha duhet me u plotesu</small>
+                  </div>
+                  <div class="field col">
+                      <label for="price">Category Name</label>
+                      <p-inputNumber
+                      formControlName="price"
+                      type="text"
+                      class="inputfield w-full"
+                      mode="decimal"
+                      inputId="price"
+                      [useGrouping]="false"></p-inputNumber>
+                      <small
+                      *ngIf="productForm['price'].invalid && isSubmitted"
+                      class="p-error"
+                      >Name is required</small>
+                  </div>
+              </div>
+          </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </p-card>
+</div>
+
