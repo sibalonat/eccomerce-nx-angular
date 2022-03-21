@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { CategoriesService } from '@mnplus/products';
 
 @Component({
   selector: 'admin-products-form',
@@ -12,11 +13,15 @@ export class ProductsFormComponent implements OnInit {
   form!: FormGroup;
   isSubmitted = false;
   editMode = false;
+  categories = [] as any;
 
-  constructor( private formBuilder: FormBuilder ) { }
+  constructor(
+    private formBuilder: FormBuilder,
+    private catServ: CategoriesService ) { }
 
   ngOnInit(): void {
     this._initForm();
+    this._getCategories();
   }
 
   private _initForm()
@@ -32,6 +37,22 @@ export class ProductsFormComponent implements OnInit {
       image: [''],
       isFeatured: ['']
     })
+  }
+
+  // onSubmit()
+  // {
+
+  // }
+  // onCancel()
+  // {
+
+  // }
+
+  private _getCategories()
+  {
+    this.catServ.getCategories().subscribe(categories => {
+      this.categories = categories;
+    });
   }
 
   get productForm()

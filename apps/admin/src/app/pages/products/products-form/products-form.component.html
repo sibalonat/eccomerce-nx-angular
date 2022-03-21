@@ -64,33 +64,48 @@
                   </div>
               </div>
               <div class="formgrid grid">
-                <div class="field col">
-                  <label for="price">Sa ka gjithsej</label>
-                  <p-inputNumber
-                  formControlName="countInStock"
-                  class="inputfield w-full"
-                  mode="decimal"
-                  inputId="countInStock"
-                  [useGrouping]="false"></p-inputNumber>
-                  <small
-                  *ngIf="productForm['countInStock'].invalid && isSubmitted"
-                  class="p-error"
-                  >Name is required</small>
-                </div>
                   <div class="field col">
-                      <label for="price">Category Name</label>
-                      <p-inputNumber
-                      formControlName="price"
-                      type="text"
-                      class="inputfield w-full"
-                      mode="decimal"
-                      inputId="price"
-                      [useGrouping]="false"></p-inputNumber>
+                    <label for="price" class="mb-0"> <h3>Gjithsej</h3></label>
+                    <p-inputNumber
+                    formControlName="countInStock"
+                    class="inputfield w-full"
+                    mode="decimal"
+                    inputId="countInStock"
+                    [useGrouping]="false"></p-inputNumber>
+                    <small
+                    *ngIf="productForm['countInStock'].invalid && isSubmitted"
+                    class="p-error"
+                    >Name is required</small>
+                  </div>
+
+                  <div class="field col">
+                      <h3>Category</h3>
+                      <p-dropdown
+                      [options]="categories"
+                      [filter]="true"
+                      filterBy="name"
+                      [showClear]="true"
+                      placeholder="Select Category"
+                      formControlName="category"
+                      class="inputfield w-full flex"
+                      optionLabel="name"></p-dropdown>
                       <small
-                      *ngIf="productForm['price'].invalid && isSubmitted"
+                      *ngIf="productForm['category'].invalid && isSubmitted"
                       class="p-error"
                       >Name is required</small>
                   </div>
+                  <div class="field col">
+                    <h3>Featured</h3>
+                    <p-inputSwitch
+                    formControlName="isFeatured"
+                    class="inputfield w-full"
+                    styleClass=""
+                    ></p-inputSwitch>
+                    <small
+                    *ngIf="productForm['price'].invalid && isSubmitted"
+                    class="p-error"
+                    >Name is required</small>
+                </div>
               </div>
               <div class="formgrid grid">
                   <div class="field col">
@@ -108,18 +123,40 @@
                       >Fusha duhet me u plotesu</small>
                   </div>
                   <div class="field col">
-                      <label for="price">Category Name</label>
-                      <p-inputNumber
-                      formControlName="price"
+                      <label for="description">Pershkrimi </label>
+                      <p-editor formControlName="richDescription"
+                      [style]="{'height':'320px'}"></p-editor>
+                      <small
+                      *ngIf="productForm['brand'].invalid && isSubmitted"
+                      class="p-error"
+                      >Fusha duhet me u plotesu</small>
+                  </div>
+              </div>
+              <div class="formgrid grid">
+                  <div class="field col">
+                    <label for="image">Imazhi Ballines</label>
+                    <input type="file">
+                      <!-- <label for="description">Pershkrimi </label>
+                      <textarea
+                      formControlName="description"
+                      id="description"
                       type="text"
                       class="inputfield w-full"
-                      mode="decimal"
-                      inputId="price"
-                      [useGrouping]="false"></p-inputNumber>
+                      [rows]="5" [cols]="30"
+                      pInputTextarea></textarea> -->
                       <small
-                      *ngIf="productForm['price'].invalid && isSubmitted"
+                      *ngIf="productForm['brand'].invalid && isSubmitted"
                       class="p-error"
-                      >Name is required</small>
+                      >Fusha duhet me u plotesu</small>
+                  </div>
+                  <div class="field col">
+                      <!-- <label for="description">Pershkrimi </label>
+                      <p-editor formControlName="richDescription"
+                      [style]="{'height':'320px'}"></p-editor> -->
+                      <small
+                      *ngIf="productForm['brand'].invalid && isSubmitted"
+                      class="p-error"
+                      >Fusha duhet me u plotesu</small>
                   </div>
               </div>
           </div>

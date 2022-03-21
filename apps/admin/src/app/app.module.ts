@@ -30,6 +30,8 @@ import { ProductsFormComponent } from './pages/products/products-form/products-f
 import { InputNumberModule } from 'primeng/inputnumber';
 import { InputTextareaModule } from 'primeng/inputtextarea';
 import { InputSwitchModule } from 'primeng/inputswitch';
+import { DropdownModule } from 'primeng/dropdown';
+import { EditorModule } from 'primeng/editor';
 
 
 const UX_MODULE = [
@@ -43,7 +45,9 @@ const UX_MODULE = [
   ColorPickerModule,
   InputNumberModule,
   InputTextareaModule,
-  InputSwitchModule
+  InputSwitchModule,
+  DropdownModule,
+  EditorModule
 ];
 
 const routes: Routes = [
