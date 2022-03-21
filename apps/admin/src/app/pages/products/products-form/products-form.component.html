@@ -134,30 +134,23 @@
               </div>
               <div class="formgrid grid">
                   <div class="field col">
-                    <label for="image">Imazhi Ballines</label>
-                    <input type="file">
-                      <!-- <label for="description">Pershkrimi </label>
-                      <textarea
-                      formControlName="description"
-                      id="description"
-                      type="text"
-                      class="inputfield w-full"
-                      [rows]="5" [cols]="30"
-                      pInputTextarea></textarea> -->
+                    <label for="image"> <h3>Imazhi Ballines</h3></label>
+                    <br>
+                    <input type="file" id="image" accept="image/*" class="p-inputtext" (change)="onImageUpload($event)">
+                    <div class="col-2 mt-2 pl-0">
+                      <img [src]="imageDisplay" class="w-full" alt="">
+                    </div>
                       <small
                       *ngIf="productForm['brand'].invalid && isSubmitted"
                       class="p-error"
                       >Fusha duhet me u plotesu</small>
                   </div>
-                  <div class="field col">
-                      <!-- <label for="description">Pershkrimi </label>
-                      <p-editor formControlName="richDescription"
-                      [style]="{'height':'320px'}"></p-editor> -->
+                  <!-- <div class="field col">
                       <small
                       *ngIf="productForm['brand'].invalid && isSubmitted"
                       class="p-error"
                       >Fusha duhet me u plotesu</small>
-                  </div>
+                  </div> -->
               </div>
           </div>
           </form>
