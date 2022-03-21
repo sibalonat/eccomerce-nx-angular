@@ -27,10 +27,10 @@ export class ProductsService {
   //   return this.http.get<Category>(`${this.apiURLCategories}${categoryId}`);
   // }
 
-  // createCategory(category: Category): Observable<Category>
-  // {
-  //   return this.http.post<Category>(this.apiURLCategories, category);
-  // }
+  createProduct(productData: FormData): Observable<Product>
+  {
+    return this.http.post<Product>(this.apiURLProducts, productData);
+  }
 
   // deleteCategory(categoryId: string): Observable<any>
   // {

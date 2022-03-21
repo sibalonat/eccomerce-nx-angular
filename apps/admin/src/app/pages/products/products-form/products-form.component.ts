@@ -1,6 +1,10 @@
+
+import { Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { CategoriesService } from '@mnplus/products';
+import { CategoriesService, Product, ProductsService } from '@mnplus/products';
+import { MessageService } from 'primeng/api';
+import { timer } from 'rxjs';
 
 
 @Component({
@@ -19,7 +23,10 @@ export class ProductsFormComponent implements OnInit {
 
   constructor(
     private formBuilder: FormBuilder,
-    private catServ: CategoriesService ) { }
+    private prdSrv: ProductsService,
+    private msgService: MessageService,
+    private catServ: CategoriesService,
+    private location: Location ) { }
 
   ngOnInit(): void {
     this._initForm();
@@ -37,14 +44,24 @@ export class ProductsFormComponent implements OnInit {
       description: ['', Validators.required],
       richDescription: [''],
       image: [''],
-      isFeatured: ['']
+      isFeatured: [false]
     })
   }
 
-  // onSubmit()
-  // {
+  onSubmit()
+  {
+    this.isSubmitted = true;
+    if (this.form.invalid) {
+      return;
+    }
+    const productFormData = new FormData();
 
-  // }
+    Object.keys(this.productForm).map((key) => {
+      productFormData.append(key, this.productForm[key].value);
+    });
+    this._addProduct(productFormData);
+  }
+
   // onCancel()
   // {
 
@@ -53,20 +70,42 @@ export class ProductsFormComponent implements OnInit {
   {
     const target= event.target as HTMLInputElement;
     const file: File = (target.files as FileList)[0];
-    // console.log(file);
+
     if (file) {
+
+      this.form.patchValue({ image: file });
+      this.form.get('image')?.updateValueAndValidity();
       const fileReader = new FileReader();
       fileReader.onload = () => {
         this.imageDisplay =  fileReader.result
       }
       fileReader.readAsDataURL(file);
     }
+  }
 
-    // console.log((event.target as HTMLInputElement).files);
-    // console.log((event.target as HTMLInputElement).files[0]);
-
-    // const file = event.target;
-    // const file = (event.target as HTMLInputElement).files;
+  private _addProduct(productData: FormData)
+  {
+    this.prdSrv.createProduct(productData).subscribe(
+      (product: Product) => {
+        this.msgService.add({
+          severity: 'success',
+          summary: 'Success',
+          detail: `Project ${product.name} created succesfully`
+        });
+        timer(2000)
+        .toPromise()
+        .then(() => {
+          this.location.back();
+        })
+      },
+      () => {
+        this.msgService.add({
+          severity: 'error',
+          summary: 'Error',
+          detail: 'Project failed in creation'
+        })
+      }
+    )
   }
 
   private _getCategories()
