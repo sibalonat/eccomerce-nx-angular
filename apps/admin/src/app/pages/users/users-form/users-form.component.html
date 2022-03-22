@@ -12,9 +12,11 @@
             icon="pi pi-plus"
             (click)="onSubmit()"></p-button>
             <p-button
-            styleClass="p-button-secondary"
-            label="Cancel"
-            icon="pi pi-arrow-circle-left"></p-button>
+              styleClass="p-button-secondary"
+              label="Cancle"
+              icon="pi pi-arrow-circle-left"
+              (click)="onCancel()"
+            ></p-button>
           </div>
         </p-toolbar>
       </div>
@@ -72,7 +74,7 @@
                       <small
                       *ngIf="userForm['phone'].invalid && isSubmitted"
                       class="p-error"
-                      >Name is required</small>
+                      >phone is required</small>
                   </div>
                   <div class="field col">
                       <h3>is Admin</h3>
@@ -150,7 +152,7 @@
                     filterBy="name"
                     [showClear]="true"
                     placeholder="Select Category"
-                    formControlName="category"
+                    formControlName="country"
                     class="inputfield w-full flex"
                     optionValue="id"
                     optionLabel="name"></p-dropdown>

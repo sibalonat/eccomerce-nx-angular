@@ -34,7 +34,7 @@ export class ProductsService {
 
   // deleteCategory(categoryId: string): Observable<any>
   // {
-  //   return this.http.delete<any>(`${this.apiURLCategories}${categoryId}`);
+  //   return this.http.delete<any>(`${this.apiURLCategories}/${categoryId}`);
   // }
   updateProduct(productData: FormData, productId: string): Observable<Product>
   {

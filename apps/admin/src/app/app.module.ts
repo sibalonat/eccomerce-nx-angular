@@ -15,6 +15,11 @@ import { SidebarComponent } from './shared/sidebar/sidebar.component';
 import { AdminDashboardComponent } from './pages/admin-dashboard/admin-dashboard.component';
 import { CategoriesListComponent } from './categories/categories-list/categories-list.component';
 import { CategoriesFormComponent } from './categories/categories-form/categories-form.component';
+import { UsersListComponent } from './pages/users/users-list/users-list.component';
+import { UsersFormComponent } from './pages/users/users-form/users-form.component';
+import { ProductsListComponent } from './pages/products/products-list/products-list.component';
+import { ProductsFormComponent } from './pages/products/products-form/products-form.component';
+
 
 import { CardModule } from 'primeng/card';
 import { ToolbarModule } from 'primeng/toolbar';
@@ -25,17 +30,18 @@ import { ToastModule } from 'primeng/toast';
 import { ConfirmationService, MessageService } from 'primeng/api';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { ColorPickerModule } from 'primeng/colorpicker';
-import { ProductsListComponent } from './pages/products/products-list/products-list.component';
-import { ProductsFormComponent } from './pages/products/products-form/products-form.component';
+
 import { InputNumberModule } from 'primeng/inputnumber';
 import { InputTextareaModule } from 'primeng/inputtextarea';
 import { InputSwitchModule } from 'primeng/inputswitch';
 import { DropdownModule } from 'primeng/dropdown';
 import { EditorModule } from 'primeng/editor';
-import { UsersListComponent } from './pages/users/users-list/users-list.component';
-import { UsersFormComponent } from './pages/users/users-form/users-form.component';
+
 import { TagModule } from 'primeng/tag';
 import { InputMaskModule } from 'primeng/inputmask';
+import { OrdersListComponent } from './pages/orders/orders-list/orders-list.component';
+import { OrdersFormComponent } from './pages/orders/orders-form/orders-form.component';
+import { OrderDetailComponent } from './pages/orders/order-detail/order-detail.component';
 
 const UX_MODULE = [
   CardModule,
@@ -100,6 +106,22 @@ const routes: Routes = [
         path: 'users/form/:id',
         component: UsersFormComponent
       },
+      {
+        path: 'orders',
+        component: OrdersListComponent
+      },
+      {
+        path: 'orders/:id',
+        component: OrderDetailComponent
+      },
+      {
+        path: 'orders/form',
+        component: OrdersFormComponent
+      },
+      {
+        path: 'orders/form/:id',
+        component: OrdersFormComponent
+      },
     ]
   }
 ]
@@ -116,7 +138,10 @@ const routes: Routes = [
     ProductsListComponent,
     ProductsFormComponent,
     UsersListComponent,
-    UsersFormComponent],
+    UsersFormComponent,
+    OrdersListComponent,
+    OrdersFormComponent,
+    OrderDetailComponent],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,

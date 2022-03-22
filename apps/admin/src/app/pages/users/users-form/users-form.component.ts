@@ -124,6 +124,7 @@ export class UsersFormComponent implements OnInit {
         this.usrSrv.getUser(params['id']).subscribe((user) => {
           this.userForm['name'].setValue(user.name);
           this.userForm['email'].setValue(user.email);
+          this.userForm['phone'].setValue(user.phone);
           this.userForm['isAdmin'].setValue(user.isAdmin);
           this.userForm['street'].setValue(user.street);
           this.userForm['appartment'].setValue(user.appartment);
@@ -162,8 +163,10 @@ export class UsersFormComponent implements OnInit {
     } else {
       this._addUser(user);
     }
+  }
 
-
+  onCancel() {
+    this.location.back();
   }
   get userForm() {
     return this.form.controls;

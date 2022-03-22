@@ -1,0 +1,52 @@
+<div class="admin-page">
+  <p-card header="Categories" subheader="List of Categories">
+    <div class="grid">
+      <!-- <div class="col-12">
+        <p-toolbar>
+          <div class="p-toolbar-group-left">
+            <p-button styleClass="p-button-success" label="New" icon="pi pi-plus" routerLink="form"></p-button>
+          </div>
+        </p-toolbar>
+      </div> -->
+      <div class="col-12 w-full">
+        <p-table [value]="orders" responsiveLayout="scroll" styleClass="p-datatable-gridlines w-full">
+          <ng-template pTemplate="header">
+            <tr>
+              <th pSortableColumn="name">User<p-sortIcon field="user"></p-sortIcon></th>
+              <th pSortableColumn="totalPrice">Total Price <p-sortIcon field="totalPrice"></p-sortIcon></th>
+              <th pSortableColumn="dateOrdered">Date Ordered <p-sortIcon field="dateOrdered"></p-sortIcon></th>
+              <th pSortableColumn="status">Status <p-sortIcon field="status"></p-sortIcon></th>
+            </tr>
+          </ng-template>
+          <!-- <ng-template pTemplate="body" let-product> -->
+          <ng-template pTemplate="body" let-order>
+            <tr>
+              <td>{{order.user}}</td>
+              <td>{{order.totalPrice}}</td>
+              <td>{{order.dateOrdered}}</td>
+              <td>{{order.status}}</td>
+              <!-- <td>{{category.icon}}</td> -->
+
+              <td>
+                <!-- <p-button
+                styleClass="p-button-danger"
+                icon="pi pi-trash mr-2"
+                (click)="deleteOrder(order.id)"></p-button>
+                <p-button
+                (click)="updateOrder(order.id)"
+                styleClass="p-button-error"
+                icon="pi pi-pencil"></p-button>
+                <p-button
+                (click)="updateOrder(order.id)"
+                styleClass="p-button-error"
+                icon="pi pi-pencil"></p-button> -->
+              </td>
+            </tr>
+          </ng-template>
+        </p-table>
+      </div>
+    </div>
+  </p-card>
+</div>
+
+<p-confirmDialog [style]="{width: '50vw'}" [baseZIndex]="10000" rejectButtonStyleClass="p-button-text"></p-confirmDialog>

@@ -7,7 +7,6 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 
-
 @Injectable({
   providedIn: 'root'
 })
@@ -24,7 +23,7 @@ export class UsersService {
   }
   getUser(userId: string) : Observable<User>
   {
-    return this.http.get<User>(`${this.apiURLUsers}${userId}`);
+    return this.http.get<User>(`${this.apiURLUsers}/${userId}`);
   }
 
   createUser(user: User): Observable<User>
