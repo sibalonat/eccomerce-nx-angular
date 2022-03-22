@@ -15,6 +15,8 @@ import { SidebarComponent } from './shared/sidebar/sidebar.component';
 import { AdminDashboardComponent } from './pages/admin-dashboard/admin-dashboard.component';
 import { CategoriesListComponent } from './categories/categories-list/categories-list.component';
 import { CategoriesFormComponent } from './categories/categories-form/categories-form.component';
+// UsersListComponent
+// UsersFormComponent
 
 import { CardModule } from 'primeng/card';
 import { ToolbarModule } from 'primeng/toolbar';
@@ -32,6 +34,9 @@ import { InputTextareaModule } from 'primeng/inputtextarea';
 import { InputSwitchModule } from 'primeng/inputswitch';
 import { DropdownModule } from 'primeng/dropdown';
 import { EditorModule } from 'primeng/editor';
+import { UsersListComponent } from './pages/users/users-list/users-list.component';
+import { UsersFormComponent } from './pages/users/users-form/users-form.component';
+
 
 
 const UX_MODULE = [
@@ -83,6 +88,18 @@ const routes: Routes = [
         path: 'categories/form/:id',
         component: CategoriesFormComponent
       },
+      {
+        path: 'users',
+        component: UsersListComponent
+      },
+      {
+        path: 'users/form',
+        component: UsersFormComponent
+      },
+      {
+        path: 'users/form/:id',
+        component: UsersFormComponent
+      },
     ]
   }
 ]
@@ -97,7 +114,9 @@ const routes: Routes = [
     CategoriesListComponent,
     CategoriesFormComponent,
     ProductsListComponent,
-    ProductsFormComponent],
+    ProductsFormComponent,
+    UsersListComponent,
+    UsersFormComponent],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,

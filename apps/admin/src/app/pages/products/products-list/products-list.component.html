@@ -9,7 +9,7 @@
         </p-toolbar>
       </div>
       <div class="col-12 w-full">
-        <p-table [value]="products" responsiveLayout="scroll" styleClass="p-datatable-gridlines w-full">
+        <p-table [value]="products" [paginator]="true" [rows]="10" responsiveLayout="scroll" styleClass="p-datatable-gridlines w-full">
           <ng-template pTemplate="header">
             <tr>
               <th pSortableColumn="name">Name<p-sortIcon field="name"></p-sortIcon></th>

@@ -143,13 +143,13 @@
                     accept="image/*"
                     class="p-inputtext"
                     (change)="onImageUpload($event)">
+                    <small
+                    *ngIf="productForm['image'].invalid && isSubmitted"
+                    class="p-error"
+                    >Fusha duhet me u plotesu</small>
                     <div class="col-2 mt-2 pl-0">
                       <img [src]="imageDisplay" class="w-full" alt="">
                     </div>
-                      <small
-                      *ngIf="productForm['brand'].invalid && isSubmitted"
-                      class="p-error"
-                      >Fusha duhet me u plotesu</small>
                   </div>
                   <!-- <div class="field col">
                       <small

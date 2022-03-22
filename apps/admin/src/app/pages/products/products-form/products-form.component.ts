@@ -20,7 +20,7 @@ export class ProductsFormComponent implements OnInit {
   isSubmitted = false;
   editMode = false;
   categories = [] as any;
-  imageDisplay!: string | ArrayBuffer | null;
+  imageDisplay!: string | ArrayBuffer | null | undefined;
   currentProductId!: string;
 
 
@@ -48,7 +48,7 @@ export class ProductsFormComponent implements OnInit {
       countInStock: ['', Validators.required],
       description: ['', Validators.required],
       richDescription: [''],
-      image: [''],
+      image: ['', Validators.required],
       isFeatured: [false]
     })
   }
@@ -64,7 +64,12 @@ export class ProductsFormComponent implements OnInit {
     Object.keys(this.productForm).map((key) => {
       productFormData.append(key, this.productForm[key].value);
     });
-    this._addProduct(productFormData);
+
+    if (this.editMode) {
+      this._updateProduct(productFormData);
+    } else {
+      this._addProduct(productFormData);
+    }
   }
 
   // onCancel()
@@ -110,7 +115,32 @@ export class ProductsFormComponent implements OnInit {
           detail: 'Project failed in creation'
         })
       }
-    )
+    );
+  }
+
+  private _updateProduct(productData: FormData)
+  {
+    this.prdSrv.updateProduct(productData, this.currentProductId).subscribe(
+      () => {
+        this.msgService.add({
+          severity: 'success',
+          summary: 'Success',
+          detail: `Project updated succesfully`
+        });
+        timer(2000)
+        .toPromise()
+        .then(() => {
+          this.location.back();
+        })
+      },
+      () => {
+        this.msgService.add({
+          severity: 'error',
+          summary: 'Error',
+          detail: 'Project failed in creation'
+        })
+      }
+    );
   }
 
 
@@ -123,13 +153,16 @@ export class ProductsFormComponent implements OnInit {
 
         this.prdSrv.getProduct(params['id']).subscribe(product => {
           this.productForm['name'].setValue(product.name);
-          this.productForm['category'].setValue(product.category);
+          this.productForm['category'].setValue(product.category?.id);
           this.productForm['brand'].setValue(product.brand);
           this.productForm['price'].setValue(product.price);
           this.productForm['countInStock'].setValue(product.countInStock);
           this.productForm['isFeatured'].setValue(product.isFeatured);
           this.productForm['description'].setValue(product.description);
           this.productForm['richDescription'].setValue(product.richDescription);
+          this.imageDisplay = product.image;
+          this.productForm['image'].setValidators([]);
+          this.productForm['image'].updateValueAndValidity()
         });
       }
     })
