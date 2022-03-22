@@ -2,6 +2,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { Order, OrdersService } from '@mnplus/orders';
 import { ORDER_STATUS } from '../order.constants';
+import { MessageService } from 'primeng/api';
 @Component({
   selector: 'admin-order-detail',
   templateUrl: './order-detail.component.html',
@@ -11,11 +12,13 @@ import { ORDER_STATUS } from '../order.constants';
 export class OrderDetailComponent implements OnInit {
   order!: Order | any;
   orderStatus = [] as any;
+  selectedStatus: any;
   // ORDER_STATUS
 
   constructor(
     private ordSrv: OrdersService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private msgSrv: MessageService
   ) { }
 
   ngOnInit(): void {
@@ -32,7 +35,25 @@ export class OrderDetailComponent implements OnInit {
         name: ORDER_STATUS[key].label
       }
     });
-    console.log(Object.keys(ORDER_STATUS));
+  }
+
+  onStatusChange(event: Event | null | any)
+  {
+    this.ordSrv.updateOrder({status: event.value}, this.order.id).subscribe(
+      () => {
+      this.msgSrv.add({
+        severity: 'success',
+        summary: 'Success',
+        detail: `Status for the order ${this.order['name']}`
+      }),
+      () => {
+        this.msgSrv.add({
+          severity: 'error',
+          summary: 'Error',
+          detail: 'Order could not update'
+        })
+      }
+    });
   }
 
   private _getOrder()
@@ -41,6 +62,7 @@ export class OrderDetailComponent implements OnInit {
       if (params['id']) {
         this.ordSrv.getOrder(params['id']).subscribe(order => {
           this.order = order;
+          this.selectedStatus = order.status;
         });
       }
     })

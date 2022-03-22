@@ -42,6 +42,7 @@ import { EditorModule } from 'primeng/editor';
 import { TagModule } from 'primeng/tag';
 import { InputMaskModule } from 'primeng/inputmask';
 import { FieldsetModule } from 'primeng/fieldset';
+import { UsersModule } from '@mnplus/users';
 
 const UX_MODULE = [
   CardModule,
@@ -150,7 +151,8 @@ const routes: Routes = [
     FormsModule,
     ReactiveFormsModule,
     RouterModule.forRoot(routes, { initialNavigation: 'enabledBlocking' }),
-    ...UX_MODULE
+    ...UX_MODULE,
+    UsersModule
   ],
   providers: [CategoriesService, MessageService, ConfirmationService],
   bootstrap: [AppComponent],

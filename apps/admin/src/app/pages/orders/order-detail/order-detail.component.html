@@ -14,7 +14,12 @@
           </div>
           <div class="col-4">
             <h5>Order Status</h5>
-            <p-dropdown [options]="orderStatus" optionLabel="name"></p-dropdown>
+            <p-dropdown
+            [options]="orderStatus"
+            optionLabel="name"
+            optionValue="id"
+            (onChange)="onStatusChange($event)"
+            [(ngModel)]="selectedStatus"></p-dropdown>
           </div>
           <div class="col-4">
             <h5>Order total</h5>
