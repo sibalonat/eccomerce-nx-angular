@@ -2,29 +2,32 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Order, OrdersService } from '@mnplus/orders';
+import { ORDER_STATUS } from '../order.constants';
 
-const ORDER_STATUS: any = {
-  0: {
-    label: 'Pending',
-    color: 'primary'
-  },
-  1: {
-    label: 'Processed',
-    color: 'warning'
-  },
-  2: {
-    label: 'Shipped',
-    color: 'warning'
-  },
-  3: {
-    label: 'Delivered',
-    color: 'success'
-  },
-  4: {
-    label: 'Failed',
-    color: 'danger'
-  }
-};
+// ORDER_STATUS
+// ORDER_STATUS
+// const ORDER_STATUS: any = {
+//   0: {
+//     label: 'Pending',
+//     color: 'primary'
+//   },
+//   1: {
+//     label: 'Processed',
+//     color: 'warning'
+//   },
+//   2: {
+//     label: 'Shipped',
+//     color: 'warning'
+//   },
+//   3: {
+//     label: 'Delivered',
+//     color: 'success'
+//   },
+//   4: {
+//     label: 'Failed',
+//     color: 'danger'
+//   }
+// };
 
 @Component({
   selector: 'admin-orders-list',

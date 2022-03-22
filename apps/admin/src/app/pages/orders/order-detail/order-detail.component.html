@@ -14,7 +14,7 @@
           </div>
           <div class="col-4">
             <h5>Order Status</h5>
-            <p-dropdown></p-dropdown>
+            <p-dropdown [options]="orderStatus" optionLabel="name"></p-dropdown>
           </div>
           <div class="col-4">
             <h5>Order total</h5>
@@ -54,18 +54,35 @@
             <p>{{orderItem.product.category.name}}</p>
           </div>
           <div class="col-2">
-            <p>{{orderItem.product.price}}</p>
+            <p>{{orderItem.product.price | currency}}</p>
           </div>
           <div class="col-2">
             <p>{{orderItem.quantity}}</p>
           </div>
           <div class="col-2">
-            <h3>{{orderItem.product.price * orderItem.quantity}}</h3>
+            <h3>{{orderItem.product.price * orderItem.quantity | currency}}</h3>
           </div>
+        </div>
+        <div class="grid">
+          <div class="col-2 col-offset-8 font-bold">Total Price</div>
+          <div class="col-2">{{order.totalPrice | currency}}</div>
         </div>
       </p-fieldset>
       <p-fieldset styleClass="mt-3" legend="Order Address" [toggleable]="true">
-        <div class="grid w-full"></div>
+        <div class="grid w-full">
+          <div class="col-4">
+            <h5>Order Address</h5>
+            <p>{{order.shippingAddress1}} <br> {{order.shippingAddress2}} <br> {{order.city}} <br> {{order.zip}} <br> {{order.country}}  </p>
+          </div>
+          <div class="col-4">
+            <h5>Costumer Info</h5>
+            <p>{{order.user.name}}</p>
+          </div>
+          <div class="col-4">
+            <h5>Contact Info</h5>
+            {{order.phone}}
+          </div>
+        </div>
       </p-fieldset>
   </p-card>
 </div>
