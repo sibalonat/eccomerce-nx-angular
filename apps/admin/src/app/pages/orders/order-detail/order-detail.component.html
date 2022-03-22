@@ -1,1 +1,71 @@
-<p>order-detail works!</p>
+<p-toast></p-toast>
+<div class="admin-page" *ngIf="order">
+  <p-card header="Order" subheader="Information about the order">
+    <!-- <div class="grid w-full"> -->
+      <p-fieldset styleClass="mt-3" legend="Order Details" [toggleable]="true">
+        <div class="grid w-full">
+          <div class="col-4">
+            <h5>Order ID</h5>
+            <p>{{order.id}}</p>
+          </div>
+          <div class="col-4">
+            <h5>Order Date</h5>
+            <p>{{order.dateOrdered | date: 'short'}}</p>
+          </div>
+          <div class="col-4">
+            <h5>Order Status</h5>
+            <p-dropdown></p-dropdown>
+          </div>
+          <div class="col-4">
+            <h5>Order total</h5>
+            <p>{{order.totalPrice | currency}}</p>
+          </div>
+        </div>
+      </p-fieldset>
+      <p-fieldset styleClass="mt-3" legend="Order Items" [toggleable]="true">
+        <div class="grid w-full">
+          <div class="col-2">
+            <h3>Name</h3>
+          </div>
+          <div class="col-2">
+            <h3>Brand</h3>
+          </div>
+          <div class="col-2">
+            <h3>Category</h3>
+          </div>
+          <div class="col-2">
+            <h3>Price</h3>
+          </div>
+          <div class="col-2">
+            <h3>Quantity</h3>
+          </div>
+          <div class="col-2">
+            <h3>Subtotal</h3>
+          </div>
+        </div>
+        <div class="grid w-full" *ngFor="let orderItem of order.orderItems">
+          <div class="col-2">
+            <p>{{orderItem.product.name}}</p>
+          </div>
+          <div class="col-2">
+            <p>{{orderItem.product.brand}}</p>
+          </div>
+          <div class="col-2">
+            <p>{{orderItem.product.category.name}}</p>
+          </div>
+          <div class="col-2">
+            <p>{{orderItem.product.price}}</p>
+          </div>
+          <div class="col-2">
+            <p>{{orderItem.quantity}}</p>
+          </div>
+          <div class="col-2">
+            <h3>{{orderItem.product.price * orderItem.quantity}}</h3>
+          </div>
+        </div>
+      </p-fieldset>
+      <p-fieldset styleClass="mt-3" legend="Order Address" [toggleable]="true">
+        <div class="grid w-full"></div>
+      </p-fieldset>
+  </p-card>
+</div>

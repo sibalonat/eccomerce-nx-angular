@@ -32,7 +32,7 @@ export class OrdersService {
     return this.http.post<Order>(this.apiURLOrders, order);
   }
 
-  deleteCategory(orderId: string): Observable<any>
+  deleteOrder(orderId: string): Observable<any>
   {
     return this.http.delete<any>(`${this.apiURLOrders}/${orderId}`);
   }

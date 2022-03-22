@@ -19,7 +19,9 @@ import { UsersListComponent } from './pages/users/users-list/users-list.componen
 import { UsersFormComponent } from './pages/users/users-form/users-form.component';
 import { ProductsListComponent } from './pages/products/products-list/products-list.component';
 import { ProductsFormComponent } from './pages/products/products-form/products-form.component';
-
+import { OrdersListComponent } from './pages/orders/orders-list/orders-list.component';
+import { OrdersFormComponent } from './pages/orders/orders-form/orders-form.component';
+import { OrderDetailComponent } from './pages/orders/order-detail/order-detail.component';
 
 import { CardModule } from 'primeng/card';
 import { ToolbarModule } from 'primeng/toolbar';
@@ -39,9 +41,7 @@ import { EditorModule } from 'primeng/editor';
 
 import { TagModule } from 'primeng/tag';
 import { InputMaskModule } from 'primeng/inputmask';
-import { OrdersListComponent } from './pages/orders/orders-list/orders-list.component';
-import { OrdersFormComponent } from './pages/orders/orders-form/orders-form.component';
-import { OrderDetailComponent } from './pages/orders/order-detail/order-detail.component';
+import { FieldsetModule } from 'primeng/fieldset';
 
 const UX_MODULE = [
   CardModule,
@@ -58,7 +58,8 @@ const UX_MODULE = [
   DropdownModule,
   EditorModule,
   TagModule,
-  InputMaskModule
+  InputMaskModule,
+  FieldsetModule
 ];
 
 const routes: Routes = [

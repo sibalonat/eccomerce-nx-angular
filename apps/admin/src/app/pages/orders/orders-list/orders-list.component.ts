@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Order, OrdersService } from '@mnplus/orders';
@@ -56,6 +57,11 @@ export class OrdersListComponent implements OnInit {
   showOrder(orderId: string)
   {
     this.router.navigateByUrl(`orders/${orderId}`)
+  }
+
+  deleteOrder(orderId: string)
+  {
+    this.ordSrv.deleteOrder(orderId);
   }
 
 }
