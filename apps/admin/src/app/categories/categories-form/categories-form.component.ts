@@ -1,12 +1,12 @@
 import { Location } from '@angular/common';
 import { CategoriesService } from '@mnplus/products';
 // import { CategoriesService } from './../../../../../../libs/products/src/lib/services/categories.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Category } from '@mnplus/products';
 import { MessageService } from 'primeng/api';
 // import { error } from 'console';
-import { timer } from 'rxjs';
+import { Subject, timer } from 'rxjs';
 import { ActivatedRoute } from '@angular/router';
 
 @Component({
@@ -15,12 +15,12 @@ import { ActivatedRoute } from '@angular/router';
   styles: [
   ]
 })
-export class CategoriesFormComponent implements OnInit {
+export class CategoriesFormComponent implements OnInit, OnDestroy {
   // form!: FormGroup;
   form!: FormGroup;
   isSubmitted = false;
   editMode = false;
-
+  endsubs$: Subject<void> = new Subject<void>();
   currentCategoryId!: string;
 
   constructor(
@@ -43,6 +43,11 @@ export class CategoriesFormComponent implements OnInit {
     this._checkEditMode();
   }
 
+  ngOnDestroy(): void {
+    this.endsubs$.next();
+    this.endsubs$.complete();
+  }
+
   onSubmit()
   {
     this.isSubmitted = true;
@@ -60,12 +65,6 @@ export class CategoriesFormComponent implements OnInit {
     } else {
       this._addCategory(category);
     }
-    // const category: Category = {
-    //   id: this.currentCategoryId,
-    //   name: this.categoryForm.name.value,
-    //   icon: this.categoryForm.icon.value,
-    //   color: this.categoryForm.color.value
-    // };
 
   }
 

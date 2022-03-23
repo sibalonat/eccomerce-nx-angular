@@ -1,0 +1,24 @@
+.d-item {
+  display: flex;
+  text-align: center;
+  color: var(--blue-300);
+  // color: var(--surface-0);
+  justify-content: space-between;
+}
+
+.d-orders {
+  background-color: #537895;
+  background-image: linear-gradient(215deg, #537895 0%, #09203f 74%);
+}
+
+.shopingCard {
+  font-size: 2.5em;
+  margin-bottom: 15px;
+  // color: var(--blue-100);
+}
+.name {
+  font-size: 1em;
+}
+.number {
+  font-size: 2.5em;
+}

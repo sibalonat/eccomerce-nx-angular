@@ -7,7 +7,6 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppComponent } from './app.component';
 
-import { RouterModule, Routes } from '@angular/router';
 // AdminDashboardComponent
 // import { AdminDashboardComponent } from './admin-dashboard/pages/admin-dashboard.component';
 import { ShellComponent } from './shared/shell/shell.component';
@@ -41,7 +40,8 @@ import { EditorModule } from 'primeng/editor';
 import { TagModule } from 'primeng/tag';
 import { InputMaskModule } from 'primeng/inputmask';
 import { FieldsetModule } from 'primeng/fieldset';
-import { AuthGuard, JwtInterceptor, UsersModule } from '@mnplus/users';
+import { JwtInterceptor, UsersModule } from '@mnplus/users';
+import { AppRoutingModule } from './app-routing.module';
 
 const UX_MODULE = [
   CardModule,
@@ -62,63 +62,7 @@ const UX_MODULE = [
   FieldsetModule
 ];
 
-const routes: Routes = [
-  {
-    path: '',
-    component: ShellComponent,
-    canActivate: [AuthGuard],
-    children: [
-      {
-        path: 'dashboard',
-        component: AdminDashboardComponent
-      },
-      {
-        path: 'categories',
-        component: CategoriesListComponent
-      },
-      {
-        path: 'products',
-        component: ProductsListComponent
-      },
-      {
-        path: 'products/form',
-        component: ProductsFormComponent
-      },
-      {
-        path: 'products/form/:id',
-        component: ProductsFormComponent
-      },
-      {
-        path: 'categories/form',
-        component: CategoriesFormComponent
-      },
-      {
-        path: 'categories/form/:id',
-        component: CategoriesFormComponent
-      },
-      {
-        path: 'users',
-        component: UsersListComponent
-      },
-      {
-        path: 'users/form',
-        component: UsersFormComponent
-      },
-      {
-        path: 'users/form/:id',
-        component: UsersFormComponent
-      },
-      {
-        path: 'orders',
-        component: OrdersListComponent
-      },
-      {
-        path: 'orders/:id',
-        component: OrderDetailComponent
-      }
-    ]
-  }
-]
+
 
 
 @NgModule({
@@ -138,10 +82,10 @@ const routes: Routes = [
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
+    AppRoutingModule,
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
-    RouterModule.forRoot(routes, { initialNavigation: 'enabledBlocking' }),
     ...UX_MODULE,
     UsersModule
   ],

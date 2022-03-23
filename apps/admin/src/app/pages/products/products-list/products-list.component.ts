@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 
 import { Router } from '@angular/router';
 import { ProductsService } from '@mnplus/products';
+import { Subject, takeUntil } from 'rxjs';
 
 @Component({
   selector: 'admin-products-list',
@@ -9,9 +10,10 @@ import { ProductsService } from '@mnplus/products';
   styles: [
   ]
 })
-export class ProductsListComponent implements OnInit {
+export class ProductsListComponent implements OnInit, OnDestroy {
 
   products = [] as any;
+  endSubs$: Subject<void> = new Subject<void>();
 
   constructor(
     private productServ: ProductsService,
@@ -21,6 +23,11 @@ export class ProductsListComponent implements OnInit {
     this._getProducts();
   }
 
+  ngOnDestroy(): void {
+    this.endSubs$.next();
+    this.endSubs$.complete();
+  }
+
   updateProduct(productId: string)
   {
     this.router.navigateByUrl(`products/form/${productId}`);
@@ -28,7 +35,7 @@ export class ProductsListComponent implements OnInit {
 
   private _getProducts()
   {
-    this.productServ.getProducts().subscribe((products) => {
+    this.productServ.getProducts().pipe(takeUntil(this.endSubs$)).subscribe((products) => {
       this.products = products;
     });
   }

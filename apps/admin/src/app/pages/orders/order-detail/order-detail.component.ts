@@ -1,18 +1,20 @@
 import { ActivatedRoute } from '@angular/router';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Order, OrdersService } from '@mnplus/orders';
 import { ORDER_STATUS } from '../order.constants';
 import { MessageService } from 'primeng/api';
+import { Subject, takeUntil } from 'rxjs';
 @Component({
   selector: 'admin-order-detail',
   templateUrl: './order-detail.component.html',
   styles: [
   ]
 })
-export class OrderDetailComponent implements OnInit {
+export class OrderDetailComponent implements OnInit, OnDestroy {
   order!: Order | any;
   orderStatus = [] as any;
   selectedStatus: any;
+  endSubs$: Subject<void> = new Subject<void>();
   // ORDER_STATUS
 
   constructor(
@@ -24,6 +26,11 @@ export class OrderDetailComponent implements OnInit {
   ngOnInit(): void {
     this._getOrder();
     this._mapOrderStatus()
+  }
+
+  ngOnDestroy(): void {
+    this.endSubs$.next();
+    this.endSubs$.complete();
   }
 
   private _mapOrderStatus()
@@ -39,7 +46,7 @@ export class OrderDetailComponent implements OnInit {
 
   onStatusChange(event: Event | null | any)
   {
-    this.ordSrv.updateOrder({status: event.value}, this.order.id).subscribe(
+    this.ordSrv.updateOrder({status: event.value}, this.order.id).pipe(takeUntil(this.endSubs$)).subscribe(
       () => {
       this.msgSrv.add({
         severity: 'success',
@@ -60,7 +67,7 @@ export class OrderDetailComponent implements OnInit {
   {
     this.route.params.subscribe(params => {
       if (params['id']) {
-        this.ordSrv.getOrder(params['id']).subscribe(order => {
+        this.ordSrv.getOrder(params['id']).pipe(takeUntil(this.endSubs$)).subscribe(order => {
           this.order = order;
           this.selectedStatus = order.status;
         });

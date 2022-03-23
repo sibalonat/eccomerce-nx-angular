@@ -1,11 +1,11 @@
 import { ActivatedRoute } from '@angular/router';
 
 import { Location } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { CategoriesService, Product, ProductsService } from '@mnplus/products';
 import { MessageService } from 'primeng/api';
-import { timer } from 'rxjs';
+import { Subject, takeUntil, timer } from 'rxjs';
 
 
 @Component({
@@ -14,7 +14,7 @@ import { timer } from 'rxjs';
   styles: [
   ]
 })
-export class ProductsFormComponent implements OnInit {
+export class ProductsFormComponent implements OnInit, OnDestroy {
 
   form!: FormGroup;
   isSubmitted = false;
@@ -22,7 +22,7 @@ export class ProductsFormComponent implements OnInit {
   categories = [] as any;
   imageDisplay!: string | ArrayBuffer | null | undefined;
   currentProductId!: string;
-
+  endSubs$: Subject<void> = new Subject<void>();
 
   constructor(
     private formBuilder: FormBuilder,
@@ -36,6 +36,11 @@ export class ProductsFormComponent implements OnInit {
     this._initForm();
     this._getCategories();
     this._checkEditMode();
+  }
+
+  ngOnDestroy(): void {
+    this.endSubs$.next();
+    this.endSubs$.complete();
   }
 
   private _initForm()
@@ -95,7 +100,7 @@ export class ProductsFormComponent implements OnInit {
 
   private _addProduct(productData: FormData)
   {
-    this.prdSrv.createProduct(productData).subscribe(
+    this.prdSrv.createProduct(productData).pipe(takeUntil(this.endSubs$)).subscribe(
       (product: Product) => {
         this.msgService.add({
           severity: 'success',
@@ -120,7 +125,7 @@ export class ProductsFormComponent implements OnInit {
 
   private _updateProduct(productData: FormData)
   {
-    this.prdSrv.updateProduct(productData, this.currentProductId).subscribe(
+    this.prdSrv.updateProduct(productData, this.currentProductId).pipe(takeUntil(this.endSubs$)).subscribe(
       () => {
         this.msgService.add({
           severity: 'success',
@@ -146,7 +151,7 @@ export class ProductsFormComponent implements OnInit {
 
   private _checkEditMode()
   {
-    this.route.params.subscribe((params) => {
+    this.route.params.pipe(takeUntil(this.endSubs$)).subscribe((params) => {
       if (params['id']) {
         this.editMode = true;
         this.currentProductId = params['id'];
@@ -170,7 +175,7 @@ export class ProductsFormComponent implements OnInit {
 
   private _getCategories()
   {
-    this.catServ.getCategories().subscribe(categories => {
+    this.catServ.getCategories().pipe(takeUntil(this.endSubs$)).subscribe(categories => {
       this.categories = categories;
     });
   }

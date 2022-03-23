@@ -45,12 +45,10 @@ export class LoginComponent implements OnInit {
     }
 
     this.auth.login(this.loginForm['email'].value, this.loginForm['password'].value).subscribe((user) => {
-      // console.log(user);
       this.authError = false;
       this.lclStg.setItem(user.token);
       this.router.navigate(['/'])
     }, (error: HttpErrorResponse) => {
-      console.log(error);
       if (error.status !== 400) {
         this.authMessage = 'Error on the server, try again later';
       }

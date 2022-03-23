@@ -1,8 +1,9 @@
 import { Router } from '@angular/router';
 import { Category } from '@mnplus/products';
 import { CategoriesService } from '@mnplus/products';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ConfirmationService, MessageService } from 'primeng/api';
+import { Subject, takeUntil } from 'rxjs';
 
 @Component({
   selector: 'admin-categories-list',
@@ -10,9 +11,10 @@ import { ConfirmationService, MessageService } from 'primeng/api';
   styles: [
   ]
 })
-export class CategoriesListComponent implements OnInit {
+export class CategoriesListComponent implements OnInit, OnDestroy {
 
   categories: Category[] = [];
+  endSubs$: Subject<void> = new Subject<void>();
 
   constructor(
     private msgService: MessageService,
@@ -30,7 +32,8 @@ export class CategoriesListComponent implements OnInit {
     this.confirmationService.confirm({
       message: 'Are you sure that you want to perform this action?',
       accept: () => {
-        this.categoryService.deleteCategory(categoryId).subscribe(response => {
+        this.categoryService.deleteCategory(categoryId).pipe(takeUntil(this.endSubs$)).subscribe(
+          () => {
           this.msgService.add({
             severity: 'success',
             summary: 'Success',
@@ -55,9 +58,14 @@ export class CategoriesListComponent implements OnInit {
 
   private _getCategories()
   {
-    this.categoryService.getCategories().subscribe(cats => {
+    this.categoryService.getCategories().pipe(takeUntil(this.endSubs$)).subscribe((cats) => {
       this.categories = cats;
     });
+  }
+
+  ngOnDestroy(): void {
+      this.endSubs$.next();
+      this.endSubs$.complete();
   }
 
 }

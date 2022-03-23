@@ -1,7 +1,7 @@
-import { timer } from 'rxjs';
+import { Subject, takeUntil, timer } from 'rxjs';
 import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { User, UsersService } from '@mnplus/users';
 import { MessageService } from 'primeng/api';
@@ -15,12 +15,13 @@ declare let require: any;
   styles: [
   ]
 })
-export class UsersFormComponent implements OnInit {
+export class UsersFormComponent implements OnInit, OnDestroy {
   form!: FormGroup;
   isSubmitted = false;
   editMode = false;
   countries = [] as  any;
   currentUserId!: string;
+  endSubs$: Subject<void> = new Subject<void>();
 
   constructor(
     private msgService: MessageService,
@@ -34,6 +35,11 @@ export class UsersFormComponent implements OnInit {
     this._initUserForm();
     this._getCountries();
     this._checkEditMode();
+  }
+
+  ngOnDestroy(): void {
+    this.endSubs$.next();
+    this.endSubs$.complete();
   }
 
   private _getCountries()
@@ -68,7 +74,7 @@ export class UsersFormComponent implements OnInit {
 
   private _addUser(user: User)
   {
-    this.usrSrv.createUser(user).subscribe(
+    this.usrSrv.createUser(user).pipe(takeUntil(this.endSubs$)).subscribe(
       (user: User) => {
         this.msgService.add({
           severity: 'success',
@@ -92,7 +98,7 @@ export class UsersFormComponent implements OnInit {
   }
   private _updateUser(user: User)
   {
-    this.usrSrv.updateUser(user).subscribe(
+    this.usrSrv.updateUser(user).pipe(takeUntil(this.endSubs$)).subscribe(
       () => {
         this.msgService.add({
           severity: 'success',
@@ -117,11 +123,11 @@ export class UsersFormComponent implements OnInit {
 
   private _checkEditMode()
   {
-    this.route.params.subscribe((params) => {
+    this.route.params.pipe(takeUntil(this.endSubs$)).subscribe((params) => {
       if (params['id']) {
         this.editMode = true;
         this.currentUserId = params['id'];
-        this.usrSrv.getUser(params['id']).subscribe((user) => {
+        this.usrSrv.getUser(params['id']).pipe(takeUntil(this.endSubs$)).subscribe((user) => {
           this.userForm['name'].setValue(user.name);
           this.userForm['email'].setValue(user.email);
           this.userForm['phone'].setValue(user.phone);

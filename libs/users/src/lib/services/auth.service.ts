@@ -19,7 +19,7 @@ export class AuthService {
     private router: Router
   ) { }
 
-  login(email: string, password: string) : Observable<User> {
+  login(email: string, password: string): Observable<User> {
     return this.http.post<User>(`${this.apiURLUsers}/login`, {email, password});
   }
 
