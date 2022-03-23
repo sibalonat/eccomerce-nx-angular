@@ -66,6 +66,7 @@ const routes: Routes = [
   {
     path: '',
     component: ShellComponent,
+    canActivate: [],
     children: [
       {
         path: 'dashboard',
