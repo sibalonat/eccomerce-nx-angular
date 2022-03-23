@@ -1,6 +1,6 @@
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CategoriesService } from '@mnplus/products';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
@@ -41,7 +41,7 @@ import { EditorModule } from 'primeng/editor';
 import { TagModule } from 'primeng/tag';
 import { InputMaskModule } from 'primeng/inputmask';
 import { FieldsetModule } from 'primeng/fieldset';
-import { UsersModule } from '@mnplus/users';
+import { AuthGuard, JwtInterceptor, UsersModule } from '@mnplus/users';
 
 const UX_MODULE = [
   CardModule,
@@ -66,7 +66,7 @@ const routes: Routes = [
   {
     path: '',
     component: ShellComponent,
-    canActivate: [],
+    canActivate: [AuthGuard],
     children: [
       {
         path: 'dashboard',
@@ -145,7 +145,10 @@ const routes: Routes = [
     ...UX_MODULE,
     UsersModule
   ],
-  providers: [CategoriesService, MessageService, ConfirmationService],
+  providers: [CategoriesService, MessageService, ConfirmationService,
+  {
+    provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true
+  }],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
