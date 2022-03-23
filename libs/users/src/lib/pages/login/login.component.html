@@ -1,1 +1,42 @@
-<p>login works!</p>
+<div class="login-register">
+  <div class="login-register-panel">
+    <div class="grid">
+      <div class="col-5">
+        <img src="assets/images/kirklogin.jpg" class="w-22rem imageCliped"  alt="">
+      </div>
+      <div class="col-6 mx-0">
+        <h6 class="mb-0 mt-8">Welcome</h6>
+        <h2 class="mt-0">Login Page</h2>
+        <form [formGroup]="loginFormGroup">
+          <div class="grid p-fluid my-auto">
+              <div class="col-12">
+                <div class="p-inputgroup">
+                    <span class="p-inputgroup-addon"><i class="pi pi-user"></i></span>
+                    <input formControlName="email" type="text" pInputText placeholder="Email" class="w-full">
+                    <small *ngIf="loginForm['email'].invalid && isSubmitted" class="p-error">
+                      <span *ngIf="loginForm['email'].errors!['required']">email is required</span>
+                      <span *ngIf="loginForm['email'].errors!['email']">email is invalid</span>
+                    </small>
+                </div>
+              </div>
+              <div class="col-12">
+                <div class="p-inputgroup">
+                    <span class="p-inputgroup-addon"><i class="pi pi-lock"></i></span>
+                    <input type="password" formControlName="password" pInputText placeholder="Password" class="w-full">
+                    <small *ngIf="loginForm['password'].invalid && isSubmitted" class="p-error">
+                      Password required
+                    </small>
+                </div>
+              </div>
+              <div class="col-12">
+                <p-button label="Login" class="p-button-primary" (onClick)="onSubmit()"></p-button>
+              </div>
+              <div class="col-12" *ngIf="isSubmitted && authError">
+                <small class="p-error">{{authMessage}}</small>
+              </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
