@@ -16,7 +16,9 @@ export class ProductsListComponent implements OnInit, OnDestroy {
   products: Product[] = [];
   categories: Category[] = [];
   endSubs$: Subject<void> = new Subject<void>();
-  checked = false;
+  isCategoryPage!: boolean;
+
+
   constructor(
     private prodSrv: ProductsService,
     private catServ: CategoriesService,
@@ -25,7 +27,8 @@ export class ProductsListComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.route.params.subscribe((params) => {
-      params.categoryid ? this._getProducts([params.categoryid]) : this._getProducts();
+      params['categoryid'] ? this._getProducts([params['categoryid']]) : this._getProducts();
+      params['categoryid'] ? this.isCategoryPage = true : this.isCategoryPage = false;
     })
     this._getProducts();
     this._getCategories();
@@ -55,8 +58,6 @@ export class ProductsListComponent implements OnInit, OnDestroy {
     const selectedcategories = this.categories?.filter((category) => category.checked).map(category => category.id!);
 
     this._getProducts(selectedcategories);
-    // console.log(selectedcategories);
-
   }
 
 }
