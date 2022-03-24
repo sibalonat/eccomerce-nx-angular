@@ -1,7 +1,7 @@
+import { ProductsModule } from '@mnplus/products';
 
-import { AccordionModule } from 'primeng/accordion';
-// import { UiModule } from './../../../../libs/ui/src/lib/ui.module';
 import { UiModule } from '@mnplus/ui';
+
 import { RouterModule, Routes } from '@angular/router';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
@@ -12,7 +12,9 @@ import { HomePageComponent } from './home-page/home-page.component';
 import { ProductListComponent } from './product-list/product-list.component';
 import { HeaderComponent } from './shared/header/header.component';
 import { FooterComponent } from './shared/footer/footer.component';
-// import { AccordionModule } from '.primeng/AccordionModule';
+import { NavComponent } from './shared/nav/nav.component';
+
+import { AccordionModule } from 'primeng/accordion';
 
 
 const routes: Routes = [
@@ -23,8 +25,20 @@ const routes: Routes = [
 
 
 @NgModule({
-  declarations: [AppComponent, HomePageComponent, ProductListComponent, HeaderComponent, FooterComponent],
-  imports: [BrowserModule, BrowserAnimationsModule, RouterModule.forRoot(routes), UiModule, AccordionModule],
+  declarations: [
+    AppComponent,
+    HomePageComponent,
+    ProductListComponent,
+    HeaderComponent,
+    FooterComponent,
+    NavComponent],
+  imports: [
+    BrowserModule,
+    BrowserAnimationsModule,
+    RouterModule.forRoot(routes),
+    UiModule,
+    ProductsModule,
+    AccordionModule],
   providers: [],
   bootstrap: [AppComponent],
 })

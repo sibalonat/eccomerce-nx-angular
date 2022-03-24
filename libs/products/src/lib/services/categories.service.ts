@@ -24,7 +24,7 @@ export class CategoriesService {
   }
   getCategory(categoryId: string) : Observable<Category>
   {
-    return this.http.get<Category>(`${this.apiURLCategories}${categoryId}`);
+    return this.http.get<Category>(`${this.apiURLCategories}/${categoryId}`);
   }
 
   createCategory(category: Category): Observable<Category>
@@ -34,7 +34,7 @@ export class CategoriesService {
 
   deleteCategory(categoryId: string): Observable<any>
   {
-    return this.http.delete<any>(`${this.apiURLCategories}${categoryId}`);
+    return this.http.delete<any>(`${this.apiURLCategories}/${categoryId}`);
   }
   updateCategory(category: Category): Observable<Category>
   {

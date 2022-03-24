@@ -1,11 +1,14 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { ProductSearchComponent } from './components/product-search/product-search.component';
 
 
 @NgModule({
   imports: [CommonModule],
-  declarations: [],
-  exports: []
+  declarations: [
+    ProductSearchComponent
+  ],
+  exports: [ProductSearchComponent]
 })
 
-export class UiModule {}
+export class ProductsModule {}
