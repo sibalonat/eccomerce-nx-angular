@@ -16,11 +16,11 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
+      "@env/*": ["environments/*"],
       "@mnplus/orders": ["libs/orders/src/index.ts"],
       "@mnplus/products": ["libs/products/src/index.ts"],
       "@mnplus/ui": ["libs/ui/src/index.ts"],
-      "@mnplus/users": ["libs/users/src/index.ts"],
-      "@env/*": ["environments/*"]
+      "@mnplus/users": ["libs/users/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

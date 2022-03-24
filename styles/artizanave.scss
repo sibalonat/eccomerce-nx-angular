@@ -14,6 +14,10 @@
 
 @import '~primeflex/primeflex.scss';
 
+// animate css
+@import '~animate.css/animate.css';
+
+
 
 // config styles after loading the primeng
 @import './base/configuration.scss';
@@ -32,8 +36,6 @@
 @import './apps/shop/shared/nav.scss';
 
 @import './apps/shop/shared/header.scss';
-
-
 
 
 //libs
