@@ -1,3 +1,4 @@
+import { HttpClientModule } from '@angular/common/http';
 import { ProductsModule } from '@mnplus/products';
 
 import { UiModule } from '@mnplus/ui';
@@ -36,6 +37,7 @@ const routes: Routes = [
     BrowserModule,
     BrowserAnimationsModule,
     RouterModule.forRoot(routes),
+    HttpClientModule,
     UiModule,
     ProductsModule,
     AccordionModule],
