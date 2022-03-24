@@ -5,12 +5,18 @@ import { CategoriesBannerComponent } from './components/categories-banner/catego
 import { RouterModule, Routes } from '@angular/router';
 import { ProductItemComponent } from './components/product-item/product-item.component';
 import { FeaturedProductsComponent } from './components/featured-products/featured-products.component';
-import { ButtonModule } from 'primeng/button';
 import { ProductsListComponent } from './pages/products-list/products-list.component';
+import { ButtonModule } from 'primeng/button';
+import { CheckboxModule } from 'primeng/checkbox';
+import { FormsModule } from '@angular/forms';
 
 const routes: Routes = [
   {
     path: 'products',
+    component: ProductsListComponent
+  },
+  {
+    path: 'category/:categoryId',
     component: ProductsListComponent
   }
 ];
@@ -19,9 +25,10 @@ const routes: Routes = [
 @NgModule({
   imports: [
     CommonModule,
-    RouterModule,
     ButtonModule,
-    RouterModule.forChild(routes)
+    CheckboxModule,
+    RouterModule.forChild(routes),
+    FormsModule
   ],
   declarations: [
     ProductSearchComponent,
