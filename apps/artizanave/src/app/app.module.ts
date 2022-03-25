@@ -16,13 +16,12 @@ import { FooterComponent } from './shared/footer/footer.component';
 import { NavComponent } from './shared/nav/nav.component';
 
 import { AccordionModule } from 'primeng/accordion';
+import { OrdersModule } from '@mnplus/orders';
 
 
 const routes: Routes = [
   { path: '', component: HomePageComponent }
 ];
-
-
 
 @NgModule({
   declarations: [
@@ -30,7 +29,8 @@ const routes: Routes = [
     HomePageComponent,
     HeaderComponent,
     FooterComponent,
-    NavComponent],
+    NavComponent
+  ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
@@ -38,7 +38,9 @@ const routes: Routes = [
     HttpClientModule,
     UiModule,
     ProductsModule,
-    AccordionModule],
+    AccordionModule,
+    OrdersModule
+  ],
   providers: [],
   bootstrap: [AppComponent],
 })
