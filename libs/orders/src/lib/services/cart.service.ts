@@ -14,19 +14,45 @@ export class CartService {
 
   iniCartLocalStorage()
   {
-    const initialCart = {
-      items: []
-    }
+    const cart: Cart = this.getCart();
 
-    const initialCartJson = JSON.stringify(initialCart);
-    localStorage.setItem('cart', initialCartJson);
+    if (!cart) {
+      const initialCart = {
+        items: []
+      }
+
+      const initialCartJson = JSON.stringify(initialCart);
+      localStorage.setItem('cart', initialCartJson);
+    }
+  }
+
+  getCart() : Cart {
+    const cartJSonString: string = localStorage.getItem(CART_KEY) || '{}';
+    const cart: Cart = JSON.parse(cartJSonString);
+    return cart;
+    // const cart: Cart = JSON.parse(localStorage.getItem(CART_KEY) || '{}');
   }
 
   setCartItem(cartItem: CartItem): Cart {
-    const cart: Cart = JSON.parse(localStorage.getItem(CART_KEY) || '{}');
+    const cart = this.getCart();
 
-    cart.items?.push(cartItem);
+    const cartItemExist = cart.items?.find((item) => item.productId === cartItem.productId);
+
+    if (cartItemExist) {
+      cart.items?.map((item) => {
+        if (item.productId === cartItem.productId && typeof item != "undefined") {
+          item.quantity = item.quantity! + cartItem.quantity!;
+          return item;
+        } else {
+          return;
+        }
+      })
+    } else {
+      cart.items?.push(cartItem);
+    }
+
+    const cartJson = JSON.stringify(cart);
+    localStorage.setItem(CART_KEY, cartJson);
     return cart;
-
   }
 }
