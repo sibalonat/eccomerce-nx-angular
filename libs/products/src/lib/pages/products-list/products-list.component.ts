@@ -1,10 +1,12 @@
 import { ActivatedRoute } from '@angular/router';
-import { Category } from '@mnplus/products';
+// import { Category } from '@mnplus/products';
+// Category
 import { Product } from './../../models/product';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ProductsService } from '../../services/products.service';
 import { Subject, takeUntil } from 'rxjs';
 import { CategoriesService } from '../../services/categories.service';
+import { Category } from '../../models/category';
 
 @Component({
   selector: 'products-list',
@@ -28,8 +30,9 @@ export class ProductsListComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.route.params.subscribe((params) => {
       params['categoryid'] ? this._getProducts([params['categoryid']]) : this._getProducts();
-      params['categoryid'] ? this.isCategoryPage = true : this.isCategoryPage = false;
-    })
+
+      params['categoryid'] ? (this.isCategoryPage = true) : (this.isCategoryPage = false);
+    });
     this._getProducts();
     this._getCategories();
   }

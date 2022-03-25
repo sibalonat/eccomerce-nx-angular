@@ -9,6 +9,7 @@ import { ProductsListComponent } from './pages/products-list/products-list.compo
 import { ButtonModule } from 'primeng/button';
 import { CheckboxModule } from 'primeng/checkbox';
 import { FormsModule } from '@angular/forms';
+import { ProductPageComponent } from './pages/product-page/product-page.component';
 
 const routes: Routes = [
   {
@@ -16,7 +17,11 @@ const routes: Routes = [
     component: ProductsListComponent
   },
   {
-    path: 'category/:categoryId',
+    path: 'products/:productid',
+    component: ProductPageComponent
+  },
+  {
+    path: 'category/:categoryid',
     component: ProductsListComponent
   }
 ];
@@ -35,14 +40,16 @@ const routes: Routes = [
     CategoriesBannerComponent,
     ProductItemComponent,
     FeaturedProductsComponent,
-    ProductsListComponent
+    ProductsListComponent,
+    ProductPageComponent
   ],
   exports: [
     ProductSearchComponent,
     CategoriesBannerComponent,
     ProductItemComponent,
     FeaturedProductsComponent,
-    ProductsListComponent
+    ProductsListComponent,
+    ProductPageComponent
   ]
 })
 
