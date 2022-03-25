@@ -2,7 +2,7 @@ import { Product } from './../../models/product';
 import { ActivatedRoute } from '@angular/router';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ProductsService } from '../../services/products.service';
-import { Subject, takeLast, takeUntil } from 'rxjs';
+import { Subject, takeUntil } from 'rxjs';
 
 @Component({
   selector: 'products-product-page',
@@ -14,6 +14,9 @@ export class ProductPageComponent implements OnInit, OnDestroy {
 
   product!: Product;
   endSubs$: Subject<void> = new Subject<void>();
+  quantity!: number;
+
+
   constructor(
     private prodSrv: ProductsService,
     private route: ActivatedRoute
@@ -21,8 +24,8 @@ export class ProductPageComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.route.params.subscribe(params => {
-      if (params.productid) {
-        params._getProduct(params.productid);
+      if (params['productid']) {
+        this._getProduct(params['productid']);
       }
     });
   }
@@ -38,5 +41,10 @@ export class ProductPageComponent implements OnInit, OnDestroy {
       this.product = resProduct;
     })
   }
-
+  addProductToCart()
+  {
+    
+  }
 }
+
+

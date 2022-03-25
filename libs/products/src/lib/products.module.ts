@@ -10,6 +10,8 @@ import { ButtonModule } from 'primeng/button';
 import { CheckboxModule } from 'primeng/checkbox';
 import { FormsModule } from '@angular/forms';
 import { ProductPageComponent } from './pages/product-page/product-page.component';
+import { RatingModule } from 'primeng/rating';
+import { InputNumberModule } from 'primeng/inputnumber';
 
 const routes: Routes = [
   {
@@ -32,6 +34,8 @@ const routes: Routes = [
     CommonModule,
     ButtonModule,
     CheckboxModule,
+    RatingModule,
+    InputNumberModule,
     RouterModule.forChild(routes),
     FormsModule
   ],
