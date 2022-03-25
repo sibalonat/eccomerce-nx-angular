@@ -1,14 +1,17 @@
 import { Cart } from './../models/cart';
 import { Injectable } from '@angular/core';
 import { CartItem } from '../models/cart';
+import { BehaviorSubject, Subject } from 'rxjs';
 
 export const CART_KEY = "cart";
 
 @Injectable({
   providedIn: 'root'
 })
-export class CartService {
 
+export class CartService {
+  cart$: BehaviorSubject<Cart> = new BehaviorSubject(this.getCart());
+  // cart$: Subject<Cart> = new Subject();
   // eslint-disable-next-line @typescript-eslint/no-empty-function
   constructor() { }
 
@@ -23,6 +26,8 @@ export class CartService {
 
       const initialCartJson = JSON.stringify(initialCart);
       localStorage.setItem('cart', initialCartJson);
+    } else {
+      this.cart$.next(cart);
     }
   }
 
@@ -53,6 +58,7 @@ export class CartService {
 
     const cartJson = JSON.stringify(cart);
     localStorage.setItem(CART_KEY, cartJson);
+    this.cart$.next(cart);
     return cart;
   }
 }

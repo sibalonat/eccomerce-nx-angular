@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ProductsService } from '../../services/products.service';
 import { Subject, takeUntil } from 'rxjs';
+import { CartItem, CartService } from '@mnplus/orders';
 
 @Component({
   selector: 'products-product-page',
@@ -14,12 +15,13 @@ export class ProductPageComponent implements OnInit, OnDestroy {
 
   product!: Product;
   endSubs$: Subject<void> = new Subject<void>();
-  quantity!: number;
+  quantity: any = 1;
 
 
   constructor(
     private prodSrv: ProductsService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private cartSrv: CartService
   ) { }
 
   ngOnInit(): void {
@@ -41,10 +43,14 @@ export class ProductPageComponent implements OnInit, OnDestroy {
       this.product = resProduct;
     })
   }
-  
+
   addProductToCart()
-  // eslint-disable-next-line @typescript-eslint/no-empty-function
   {
+    const cartItem: CartItem = {
+      productId: this.product.id,
+      quantity: this.quantity,
+    }
+    this.cartSrv.setCartItem(cartItem);
 
   }
 }

@@ -1,0 +1,39 @@
+<div class="cart-page">
+  <div class="grid">
+    <div class="col-8">
+      <div>
+        <p-button
+        label="Continue Shopping"
+        icon="pi pi-arrow-left"
+        (onclick)="backToShop()"></p-button>
+      </div>
+      <div>
+        <h4>My Cart: {{2}} item (s)</h4>
+      </div>
+      <div class="cart-shipping mb-5">
+        Shipping after the payment, delivery time: 1 to 4 working
+      </div>
+      <div class="cart-item">
+        <div class="grid">
+          <div class="col-2 cart-item-image">
+            <img src="" alt="">
+          </div>
+          <div class="col-7">
+            <div class="cart-item-name">
+              product name
+            </div>
+            <div class="cart-item-price">
+              {{250 | currency}}
+            </div>
+            <div class="cart-item-remove">
+              <p-button icon="pi pi-trash" (onClick)="deleteCartItem()"></p-button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-4">
+      order summary
+    </div>
+  </div>
+</div>
