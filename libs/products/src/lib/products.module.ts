@@ -12,6 +12,9 @@ import { FormsModule } from '@angular/forms';
 import { ProductPageComponent } from './pages/product-page/product-page.component';
 import { RatingModule } from 'primeng/rating';
 import { InputNumberModule } from 'primeng/inputnumber';
+import { GalleriaModule } from 'primeng/galleria';
+import { UiModule } from '@mnplus/ui';
+
 
 const routes: Routes = [
   {
@@ -36,6 +39,8 @@ const routes: Routes = [
     CheckboxModule,
     RatingModule,
     InputNumberModule,
+    GalleriaModule,
+    UiModule,
     RouterModule.forChild(routes),
     FormsModule
   ],

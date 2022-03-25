@@ -41,9 +41,11 @@ export class ProductPageComponent implements OnInit, OnDestroy {
       this.product = resProduct;
     })
   }
+  
   addProductToCart()
+  // eslint-disable-next-line @typescript-eslint/no-empty-function
   {
-    
+
   }
 }
 

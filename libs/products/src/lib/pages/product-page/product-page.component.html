@@ -1,7 +1,7 @@
 <div class="product-page" *ngIf="product">
   <div class="grid">
     <div class="col-6">
-      <!-- <ui-gallery></ui-gallery> -->
+      <ui-gallery [images]="product.images"></ui-gallery>
     </div>
     <div class="col-6 product">
       <h2>{{product.name}}</h2>
@@ -23,9 +23,7 @@
           [showButtons]="true"
           inputId="quantity"
           [min]="0"
-          [max]="100"
-          mode="currency"
-          currency="USD">
+          [max]="100">
           </p-inputNumber>
         </div>
       </div>
