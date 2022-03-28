@@ -5,7 +5,7 @@
         <p-button
         label="Continue Shopping"
         icon="pi pi-arrow-left"
-        (onclick)="backToShop()"></p-button>
+        (onClick)="backToShop()"></p-button>
       </div>
       <div>
         <h4>My Cart: {{2}} item (s)</h4>
@@ -31,16 +31,15 @@
           </div>
           <div class="col-3">
             <div class="p-field cart-item-quantity">
-              <label for="quantity">Quantity</label>
               <p-inputNumber
               mode="decimal"
               [(ngModel)]="cartitem.quantity"
               styleClass="p-0"
               [showButtons]="true"
               [inputId]="cartitem.product.id"
-              inputId="quantity"
               [min]="1"
-              [max]="100"></p-inputNumber>
+              [max]="100"
+              (onInput)="updateCartItemQuantity($event, cartitem)"></p-inputNumber>
             </div>
             <div class="cart-item-subtotal">
               subtotal

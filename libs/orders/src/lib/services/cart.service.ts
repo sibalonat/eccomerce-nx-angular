@@ -38,7 +38,7 @@ export class CartService {
     // const cart: Cart = JSON.parse(localStorage.getItem(CART_KEY) || '{}');
   }
 
-  setCartItem(cartItem: CartItem): Cart {
+  setCartItem(cartItem: CartItem, updateCartItem?: boolean): Cart {
     const cart = this.getCart();
 
     const cartItemExist = cart.items?.find((item) => item.productId === cartItem.productId);
@@ -46,7 +46,11 @@ export class CartService {
     if (cartItemExist) {
       cart.items?.map((item) => {
         if (item.productId === cartItem.productId && typeof item != "undefined") {
-          item.quantity = item.quantity! + cartItem.quantity!;
+          if (updateCartItem) {
+            item.quantity = cartItem.quantity!;
+          } else {
+            item.quantity = item.quantity! + cartItem.quantity!;
+          }
           return item;
         } else {
           return;

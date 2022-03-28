@@ -34,7 +34,6 @@ export class CartPageComponent implements OnInit, OnDestroy {
   ngOnDestroy(): void {
     this.endsubs$.next();
     this.endsubs$.complete();
-
   }
 
 
@@ -67,6 +66,14 @@ export class CartPageComponent implements OnInit, OnDestroy {
   deleteCartItem(cartitem: CartItemDetailed): void
   {
     this.cartSrv.deleteCartItem(cartitem.product?.id)
+  }
+
+  updateCartItemQuantity(event: any, cartitem: CartItemDetailed)
+  {
+      this.cartSrv.setCartItem({
+        productId: cartitem.product.id,
+        quantity: event.value
+      }, true);
   }
 
 }

@@ -11,6 +11,7 @@ import { ButtonModule } from 'primeng/button';
 import { InputNumberModule } from 'primeng/inputnumber';
 import { OrderSummaryComponent } from './components/order-summary/order-summary.component';
 import { FormsModule } from '@angular/forms';
+import { ChecloutPageComponent } from './pages/checlout-page/checlout-page.component';
 
 
 
@@ -34,12 +35,14 @@ const routes: Routes = [
   declarations: [
     CartIconComponent,
     CartPageComponent,
-    OrderSummaryComponent
+    OrderSummaryComponent,
+    ChecloutPageComponent
   ],
   exports: [
     CartIconComponent,
     CartPageComponent,
-    OrderSummaryComponent
+    OrderSummaryComponent,
+    ChecloutPageComponent
   ]
 })
 
