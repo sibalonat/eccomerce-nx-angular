@@ -16,7 +16,7 @@
       <div class="cart-item p-mb-5 p-fluid" *ngFor="let cartitem of cartItemsDetailed">
         <div class="grid">
           <div class="col-2 cart-item-image">
-            <img [src]="cartitem.product.image" [attr.alt]="cartitem.product.name">
+            <img title="uno" [src]="cartitem.product.image" [attr.alt]="cartitem.product.name">
           </div>
           <div class="col-7">
             <div class="cart-item-name">
@@ -34,6 +34,7 @@
               <label for="quantity">Quantity</label>
               <p-inputNumber
               mode="decimal"
+              [(ngModel)]="cartitem.quantity"
               styleClass="p-0"
               [showButtons]="true"
               [inputId]="cartitem.product.id"
@@ -50,7 +51,7 @@
       </div>
     </div>
     <div class="col-4">
-      order summary
+      <orders-order-summary></orders-order-summary>
     </div>
   </div>
 </div>

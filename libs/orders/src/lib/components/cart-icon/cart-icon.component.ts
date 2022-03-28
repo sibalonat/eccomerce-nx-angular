@@ -17,7 +17,7 @@ export class CartIconComponent implements OnInit {
     this.cartSrv.cart$.subscribe(cart => {
       this.cartCount = cart?.items?.length ?? 0;
     });
-    this.cartCount = this.cartSrv.getCart().items?.length;
+    this.cartCount = this.cartSrv.getCart().items?.length ?? 0;
   }
 
 }

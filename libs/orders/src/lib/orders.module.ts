@@ -9,6 +9,8 @@ import { BadgeModule } from 'primeng/badge';
 import { CartPageComponent } from './pages/cart-page/cart-page.component';
 import { ButtonModule } from 'primeng/button';
 import { InputNumberModule } from 'primeng/inputnumber';
+import { OrderSummaryComponent } from './components/order-summary/order-summary.component';
+import { FormsModule } from '@angular/forms';
 
 
 
@@ -25,16 +27,19 @@ const routes: Routes = [
     BadgeModule,
     ButtonModule,
     InputNumberModule,
+    FormsModule,
     RouterModule.forChild(routes)
   ],
   providers: [],
   declarations: [
     CartIconComponent,
-    CartPageComponent
+    CartPageComponent,
+    OrderSummaryComponent
   ],
   exports: [
     CartIconComponent,
-    CartPageComponent
+    CartPageComponent,
+    OrderSummaryComponent
   ]
 })
 
