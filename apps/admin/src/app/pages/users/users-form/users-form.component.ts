@@ -44,7 +44,6 @@ export class UsersFormComponent implements OnInit, OnDestroy {
 
   private _getCountries()
   {
-
     countriesLib.registerLocale(require("i18n-iso-countries/langs/en.json"));
     this.countries = Object.entries(countriesLib.getNames("en", {select: "official"})).map(
       (entry) => {
@@ -174,6 +173,7 @@ export class UsersFormComponent implements OnInit, OnDestroy {
   onCancel() {
     this.location.back();
   }
+  
   get userForm() {
     return this.form.controls;
   }

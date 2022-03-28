@@ -5,44 +5,57 @@ import { CommonModule } from '@angular/common';
 import { CartService } from './services/cart.service';
 import { CartIconComponent } from './components/cart-icon/cart-icon.component';
 
-import { BadgeModule } from 'primeng/badge';
+
+
 import { CartPageComponent } from './pages/cart-page/cart-page.component';
-import { ButtonModule } from 'primeng/button';
-import { InputNumberModule } from 'primeng/inputnumber';
 import { OrderSummaryComponent } from './components/order-summary/order-summary.component';
-import { FormsModule } from '@angular/forms';
-import { ChecloutPageComponent } from './pages/checlout-page/checlout-page.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { CheckoutPageComponent } from './pages/checkout-page/checkout-page.component';
 
-
+// import { InputTextareaModule } from 'primeng/inputtextarea';
+import { DropdownModule } from 'primeng/dropdown';
+import { ButtonModule } from 'primeng/button';
+import { BadgeModule } from 'primeng/badge';
+import { InputNumberModule } from 'primeng/inputnumber';
+import { InputTextModule } from 'primeng/inputtext';
+import { InputMaskModule } from 'primeng/inputmask';
 
 const routes: Routes = [
   {
     path: 'cart',
     component: CartPageComponent
+  },
+  {
+    path: 'checkout',
+    component: CheckoutPageComponent
   }
 ]
 
 @NgModule({
   imports: [
     CommonModule,
-    BadgeModule,
-    ButtonModule,
-    InputNumberModule,
     FormsModule,
-    RouterModule.forChild(routes)
+    BadgeModule,
+    InputNumberModule,
+    ButtonModule,
+    ReactiveFormsModule,
+    RouterModule.forChild(routes),
+    InputTextModule,
+    DropdownModule,
+    InputMaskModule,
   ],
   providers: [],
   declarations: [
     CartIconComponent,
     CartPageComponent,
     OrderSummaryComponent,
-    ChecloutPageComponent
+    CheckoutPageComponent,
   ],
   exports: [
     CartIconComponent,
     CartPageComponent,
     OrderSummaryComponent,
-    ChecloutPageComponent
+    CheckoutPageComponent,
   ]
 })
 
