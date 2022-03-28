@@ -11,6 +11,7 @@ import { CartPageComponent } from './pages/cart-page/cart-page.component';
 import { OrderSummaryComponent } from './components/order-summary/order-summary.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CheckoutPageComponent } from './pages/checkout-page/checkout-page.component';
+import { ThankyouPageComponent } from './pages/thankyou-page/thankyou-page.component';
 
 // import { InputTextareaModule } from 'primeng/inputtextarea';
 import { DropdownModule } from 'primeng/dropdown';
@@ -28,7 +29,11 @@ const routes: Routes = [
   {
     path: 'checkout',
     component: CheckoutPageComponent
-  }
+  },
+  {
+    path: 'success',
+    component: ThankyouPageComponent
+  },
 ]
 
 @NgModule({
@@ -50,12 +55,14 @@ const routes: Routes = [
     CartPageComponent,
     OrderSummaryComponent,
     CheckoutPageComponent,
+    ThankyouPageComponent,
   ],
   exports: [
     CartIconComponent,
     CartPageComponent,
     OrderSummaryComponent,
     CheckoutPageComponent,
+    ThankyouPageComponent,
   ]
 })
 

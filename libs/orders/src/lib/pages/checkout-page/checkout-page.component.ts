@@ -106,7 +106,7 @@ export class CheckoutPageComponent implements OnInit {
       zip: this.userForm['zip'].value,
       country: this.userForm['country'].value,
       phone: this.userForm['phone'].value,
-      status: ORDER_STATUS[],
+      status: Object.keys(ORDER_STATUS)[0],
       // totalPrice: this.userForm['totalPrice'].value,
       // user: this.userId,
       dateOrdered: `${Date.now()}`,
@@ -114,9 +114,10 @@ export class CheckoutPageComponent implements OnInit {
 
     this.orderService.createOrder(order).subscribe(
       () => {
-        // ORDER_STATUS
+        this.cartService.emptyCart();
+        this.router.navigate(['/success']);
       }
-      );
+    );
   }
 
   get userForm() {

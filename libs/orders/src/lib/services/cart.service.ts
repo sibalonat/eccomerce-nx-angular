@@ -31,6 +31,19 @@ export class CartService {
     }
   }
 
+  emptyCart()
+  {
+    const initialCart = {
+      items: []
+    }
+
+    const initialCartJson = JSON.stringify(initialCart);
+    localStorage.setItem(CART_KEY, initialCartJson);
+    this.cart$.next(initialCart);
+
+    // localStorage
+  }
+
   getCart() : Cart {
     const cartJSonString: string = localStorage.getItem(CART_KEY) || '{}';
     const cart: Cart = JSON.parse(cartJSonString);
