@@ -8,6 +8,10 @@ import { CartIconComponent } from './components/cart-icon/cart-icon.component';
 import { BadgeModule } from 'primeng/badge';
 import { CartPageComponent } from './pages/cart-page/cart-page.component';
 import { ButtonModule } from 'primeng/button';
+import { InputNumberModule } from 'primeng/inputnumber';
+
+
+
 const routes: Routes = [
   {
     path: 'cart',
@@ -20,6 +24,7 @@ const routes: Routes = [
     CommonModule,
     BadgeModule,
     ButtonModule,
+    InputNumberModule,
     RouterModule.forChild(routes)
   ],
   providers: [],

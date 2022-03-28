@@ -13,20 +13,37 @@
       <div class="cart-shipping mb-5">
         Shipping after the payment, delivery time: 1 to 4 working
       </div>
-      <div class="cart-item">
+      <div class="cart-item p-mb-5 p-fluid" *ngFor="let cartitem of cartItemsDetailed">
         <div class="grid">
           <div class="col-2 cart-item-image">
-            <img src="" alt="">
+            <img [src]="cartitem.product.image" [attr.alt]="cartitem.product.name">
           </div>
           <div class="col-7">
             <div class="cart-item-name">
-              product name
+              {{cartitem.product.name}}
             </div>
             <div class="cart-item-price">
-              {{250 | currency}}
+              {{cartitem.product.price | currency}}
             </div>
             <div class="cart-item-remove">
-              <p-button icon="pi pi-trash" (onClick)="deleteCartItem()"></p-button>
+              <p-button icon="pi pi-trash" (onClick)="deleteCartItem(cartitem)"></p-button>
+            </div>
+          </div>
+          <div class="col-3">
+            <div class="p-field cart-item-quantity">
+              <label for="quantity">Quantity</label>
+              <p-inputNumber
+              mode="decimal"
+              styleClass="p-0"
+              [showButtons]="true"
+              [inputId]="cartitem.product.id"
+              inputId="quantity"
+              [min]="1"
+              [max]="100"></p-inputNumber>
+            </div>
+            <div class="cart-item-subtotal">
+              subtotal
+              <span class="cart-item-subtotal-value">{{ cartitem.product.price * cartitem.quantity! | currency}}</span>
             </div>
           </div>
         </div>

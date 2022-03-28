@@ -1,6 +1,11 @@
 .cart-page {
   min-height: 500px;
 
+  button {
+    background-color: var(--green-300);
+    border: 0;
+  }
+
   .cart {
     &-shipping{
       color: var(--green-700);
@@ -29,6 +34,17 @@
         font-size: 1.2em;
         margin-bottom: 15px;
         color: var(--primary-color);
+      }
+
+      &-quantity {
+        margin: 15px 0;
+      }
+
+      &-subtotal {
+        font-weight: 600;
+        &-value {
+          color: var(--green-600);
+        }
       }
     }
   }
