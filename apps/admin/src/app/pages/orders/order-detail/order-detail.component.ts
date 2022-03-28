@@ -1,7 +1,7 @@
 import { ActivatedRoute } from '@angular/router';
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Order, OrdersService } from '@mnplus/orders';
-import { ORDER_STATUS } from '../order.constants';
+import { ORDER_STATUS } from '../../../../../../../libs/orders/src/lib/order.constants';
 import { MessageService } from 'primeng/api';
 import { Subject, takeUntil } from 'rxjs';
 @Component({

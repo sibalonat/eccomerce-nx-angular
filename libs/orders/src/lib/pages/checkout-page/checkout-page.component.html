@@ -3,8 +3,8 @@
     <p-button label="Back to Cart" icon="pi pi-arrow-left" (onClick)="backTocart()"></p-button>
   </div>
   <div class="grid checkout-form">
-    <div class="grid mt-4 w-full">
-      <div class="col-12">
+    <!-- <div class="grid mt-4 w-full"> -->
+      <div class="col-7">
         <form [formGroup]="checkoutFormGroup">
           <div class="card">
             <div class="formgrid grid">
@@ -62,7 +62,7 @@
                     <small
                     *ngIf="userForm['street'].invalid && isSubmitted"
                     class="p-error"
-                    >Name is required</small>
+                    >Street is required</small>
                 </div>
                 <div class="field col">
                     <label for="appartment">Appartment</label>
@@ -75,7 +75,7 @@
                     <small
                     *ngIf="userForm['appartment'].invalid && isSubmitted"
                     class="p-error"
-                    >Name is required</small>
+                    >Appartment is required</small>
                 </div>
                 <div class="field col">
                     <label for="zip">Zip Code</label>
@@ -88,7 +88,7 @@
                     <small
                     *ngIf="userForm['zip'].invalid && isSubmitted"
                     class="p-error"
-                    >Name is required</small>
+                    >Zip is required</small>
                 </div>
             </div>
             <div class="formgrid grid">
@@ -103,18 +103,18 @@
                     <small
                     *ngIf="userForm['city'].invalid && isSubmitted"
                     class="p-error"
-                    >Name is required</small>
+                    >City is required</small>
                 </div>
                 <div class="field col">
-                  <h3>Category</h3>
                   <p-dropdown
                   [options]="countries"
                   [filter]="true"
                   filterBy="name"
                   [showClear]="true"
-                  placeholder="Select Category"
+                  placeholder="Country"
                   formControlName="country"
                   class="inputfield w-full flex"
+                  styleClass="pl-8 mt-4"
                   optionValue="id"
                   optionLabel="name"></p-dropdown>
                   <small
@@ -126,6 +126,12 @@
         </div>
         </form>
       </div>
-    </div>
+      <div class="col-5">
+        <orders-order-summary></orders-order-summary>
+        <div class="checkout-button">
+          <p-button label="Place Order" (onClick)="placeOrder()"></p-button>
+        </div>
+      </div>
+    <!-- </div> -->
   </div>
 </div>

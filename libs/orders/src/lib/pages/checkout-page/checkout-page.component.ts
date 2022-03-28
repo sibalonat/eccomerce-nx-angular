@@ -1,10 +1,15 @@
+// import { CartService } from './../../services/cart.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-// import { CartService } from '@mnplus/orders';
+import { CartService } from '../../services/cart.service';
+import { OrdersService } from '../../services/orders.service';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import * as countriesLib from "i18n-iso-countries";
 import { Location } from '@angular/common';
 import { OrderItem } from '../../models/order-item';
+import { Order } from '../../models/order';
+import { Cart } from '../../models/cart';
+import { ORDER_STATUS } from "../../order.constants";
 
 declare let require: any;
 
@@ -18,20 +23,23 @@ export class CheckoutPageComponent implements OnInit {
   isSubmitted = false;
   checkoutFormGroup!: FormGroup;
   editMode = false;
-  orderItems: OrderItem[] = [];
-  uerId!: string;
+  orderItems: OrderItem[] | any = [];
+  userId!: string;
   countries = [] as  any;
 
 
   constructor(
     private formBuilder: FormBuilder,
     private router: Router,
-    private location: Location
+    private location: Location,
+    private cartService: CartService,
+    private orderService: OrdersService
   ) { }
 
   ngOnInit(): void
   {
     this._initUserForm();
+    this._getCartItems();
     this._getCountries();
   }
 
@@ -49,6 +57,18 @@ export class CheckoutPageComponent implements OnInit {
     });
   }
 
+  private _getCartItems()
+  {
+    const cart: Cart = this.cartService.getCart();
+    this.orderItems = cart.items?.map(item => {
+      return {
+        product: item.productId,
+        quantity: item.quantity
+      }
+    });
+    console.log(this.orderItems);
+  }
+
   private _getCountries()
   {
     countriesLib.registerLocale(require("i18n-iso-countries/langs/en.json"));
@@ -59,7 +79,7 @@ export class CheckoutPageComponent implements OnInit {
         name: entry[1]
       }
     });
-    console.log(this.countries);
+    // console.log(this.countries);
   }
 
   backTocart()
@@ -67,8 +87,36 @@ export class CheckoutPageComponent implements OnInit {
     this.router.navigate(['/cart'])
   }
 
-  onCancel() {
-    this.location.back();
+  // onCancel() {
+  //   this.location.back();
+  // }
+
+  placeOrder()
+  {
+    this.isSubmitted = true;
+    if (this.checkoutFormGroup.invalid) {
+      return;
+    }
+
+    const order: Order = {
+      orderItems: this.orderItems,
+      shippingAddress1: this.userForm['street'].value,
+      shippingAddress2: this.userForm['apartment'].value,
+      city: this.userForm['city'].value,
+      zip: this.userForm['zip'].value,
+      country: this.userForm['country'].value,
+      phone: this.userForm['phone'].value,
+      status: ORDER_STATUS[],
+      // totalPrice: this.userForm['totalPrice'].value,
+      // user: this.userId,
+      dateOrdered: `${Date.now()}`,
+    }
+
+    this.orderService.createOrder(order).subscribe(
+      () => {
+        // ORDER_STATUS
+      }
+      );
   }
 
   get userForm() {
